@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bitf204q0e47b"]
+
+[ext_resource type="Script" uid="uid://cl273b0f4w76s" path="res://Scripts/Core.cs" id="1_pghlq"]
+[ext_resource type="Script" uid="uid://jnux0rwei6b5" path="res://Scripts/StructuralPart.cs" id="1_wtb72"]
+[ext_resource type="Texture2D" uid="uid://c5p8leb4quj8j" path="res://Textures/Core.png" id="2_wtb72"]
+
+[node name="Core" type="RigidBody2D" unique_id=1198044548]
+collision_layer = 2
+
+[node name="StructuralPart" type="Node" parent="." unique_id=526887487 node_paths=PackedStringArray("Body", "BodyShape", "Display", "Mind")]
+script = ExtResource("1_wtb72")
+Body = NodePath("..")
+BodyShape = NodePath("../CollisionShape2D")
+Size = Vector2i(9, 9)
+Density = 0.4
+Display = NodePath("../Sprite2D")
+Mind = NodePath("CorePart")
+
+[node name="CorePart" type="Node" parent="StructuralPart" unique_id=973913008]
+script = ExtResource("1_pghlq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452579944]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=444075122]
+texture = ExtResource("2_wtb72")
+region_enabled = true
+region_rect = Rect2(0, 0, 9, 9)

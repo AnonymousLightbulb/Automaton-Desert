@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwnpgwjdh15b6"]
+
+[ext_resource type="Texture2D" uid="uid://pkoulw475owi" path="res://Textures/DataLine.png" id="1_g4a7t"]
+[ext_resource type="Script" uid="uid://5jx16b6l4kue" path="res://Scripts/DataLine.cs" id="2_g4a7t"]
+
+[node name="DataLine" type="Line2D"]
+process_priority = -1
+top_level = true
+z_index = 2
+width = 6.0
+texture = ExtResource("1_g4a7t")
+texture_mode = 2
+
+[node name="DataLinePart" type="Node" parent="." node_paths=PackedStringArray("WireDisplay")]
+process_priority = -1
+script = ExtResource("2_g4a7t")
+WireDisplay = NodePath("..")
+Durability = 100.0
+MaxMaxElectricity = 0.0
+MaxElectricity = 0.0
+MaxIntake = 0.0
+Intake = 0.0
+MaxOutput = 0.0
+Output = 0.0

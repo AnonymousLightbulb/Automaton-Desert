@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvvp4luo0lu6a"]
+
+[ext_resource type="Script" uid="uid://opfs506hgum0" path="res://Scripts/GasEngine.cs" id="1_dtjgn"]
+[ext_resource type="Texture2D" uid="uid://ds3isonvxq06n" path="res://Textures/GasEngine.png" id="2_dtjgn"]
+[ext_resource type="Script" uid="uid://cxxg54epcptyx" path="res://Scripts/Inventory.cs" id="3_wdh8i"]
+
+[node name="GasEngine" type="RigidBody2D"]
+collision_layer = 2
+
+[node name="GasEnginePart" type="Node" parent="." node_paths=PackedStringArray("Items", "Body", "BodyShape", "Display")]
+script = ExtResource("1_dtjgn")
+MaxFullness = 100.0
+Items = [NodePath("../Gas"), NodePath("../Ethanol")]
+Body = NodePath("..")
+BodyShape = NodePath("../CollisionShape2D")
+Size = Vector2i(11, 7)
+Display = NodePath("../Sprite2D")
+MaxMaxElectricity = 25000.0
+MaxElectricity = 25000.0
+Electricity = 25000.0
+MaxIntake = 15000.0
+Intake = 15000.0
+MaxHeat = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dtjgn")
+region_enabled = true
+region_rect = Rect2(0, 0, 11, 7)
+
+[node name="Gas" type="Node" parent="."]
+script = ExtResource("3_wdh8i")
+ItemType = "gas"
+
+[node name="Ethanol" type="Node" parent="."]
+script = ExtResource("3_wdh8i")
+ItemType = "ethanol"

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bww84whfycwdi"]
+
+[ext_resource type="Texture2D" uid="uid://bxl186qaqqmbl" path="res://Textures/ItemLine.png" id="1_ao6g4"]
+[ext_resource type="Script" uid="uid://phu0pl7qdpug" path="res://Scripts/ItemPipe.cs" id="2_rnt08"]
+
+[node name="ItemPipe" type="Line2D"]
+process_priority = -1
+top_level = true
+z_index = 2
+width = 6.0
+texture = ExtResource("1_ao6g4")
+texture_mode = 2
+
+[node name="ItemPipePart" type="Node" parent="." node_paths=PackedStringArray("WireDisplay")]
+process_priority = -1
+script = ExtResource("2_rnt08")
+WireDisplay = NodePath("..")

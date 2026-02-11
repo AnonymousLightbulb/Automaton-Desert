@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://7eaj82u76hvn"]
+
+[ext_resource type="Script" uid="uid://cxnaxk2uaky24" path="res://Scripts/Actuator.cs" id="1_w25ol"]
+[ext_resource type="Texture2D" uid="uid://btce2hivl8tjn" path="res://Textures/Acutator.png" id="2_w25ol"]
+
+[node name="Actuator" type="PinJoint2D"]
+z_index = 1
+motor_enabled = true
+
+[node name="ActuatorPart" type="Node" parent="." node_paths=PackedStringArray("Joiner", "Display")]
+process_priority = -2
+script = ExtResource("1_w25ol")
+MaxSpeed = 7.0
+Joiner = NodePath("..")
+Display = NodePath("../Sprite2D")
+Durability = 100.0
+MaxMaxElectricity = 250.0
+MaxElectricity = 250.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_w25ol")

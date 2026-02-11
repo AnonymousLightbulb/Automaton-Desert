@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2uo3c5njxob6"]
+
+[ext_resource type="Script" uid="uid://bcij3fh6k0uri" path="res://Scripts/PowerLine.cs" id="1_3gyfy"]
+[ext_resource type="Texture2D" uid="uid://4xfiitxi4utx" path="res://Textures/PowerLine.png" id="1_6dpiw"]
+
+[node name="PowerLine" type="Line2D"]
+process_priority = -1
+top_level = true
+z_index = 2
+width = 6.0
+texture = ExtResource("1_6dpiw")
+texture_mode = 2
+
+[node name="PoweLinePart" type="Node" parent="." node_paths=PackedStringArray("WireDisplay")]
+process_priority = -1
+script = ExtResource("1_3gyfy")
+WireDisplay = NodePath("..")
+MaxOutput = 500.0
+Output = 500.0
