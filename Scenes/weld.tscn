@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1erruvq1sqva"]
+[gd_scene format=3 uid="uid://b1erruvq1sqva"]
 
 [ext_resource type="Script" uid="uid://rqvumecbxllw" path="res://Scripts/Weld.cs" id="1_hivti"]
 [ext_resource type="Texture2D" uid="uid://dnkeolbuegeoq" path="res://Textures/Weld.png" id="2_eqej5"]
 
-[node name="Weld" type="PinJoint2D"]
+[node name="Weld" type="PinJoint2D" unique_id=1313878204]
 process_priority = -2
 z_index = 1
 angular_limit_enabled = true
 
-[node name="WeldPart" type="Node" parent="." node_paths=PackedStringArray("Joiner", "Display")]
+[node name="WeldPart" type="Node" parent="." unique_id=257839463 node_paths=PackedStringArray("Joiner", "Display")]
 script = ExtResource("1_hivti")
 Joiner = NodePath("..")
 Display = NodePath("../Sprite2D")
@@ -20,5 +20,6 @@ Intake = 0.0
 MaxOutput = 0.0
 Output = 0.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1031975218]
+self_modulate = Color(1, 1, 1, 0.5019608)
 texture = ExtResource("2_eqej5")

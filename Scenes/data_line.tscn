@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwnpgwjdh15b6"]
+[gd_scene format=3 uid="uid://dwnpgwjdh15b6"]
 
 [ext_resource type="Texture2D" uid="uid://pkoulw475owi" path="res://Textures/DataLine.png" id="1_g4a7t"]
 [ext_resource type="Script" uid="uid://5jx16b6l4kue" path="res://Scripts/DataLine.cs" id="2_g4a7t"]
 
-[node name="DataLine" type="Line2D"]
+[node name="DataLine" type="Line2D" unique_id=975369023]
 process_priority = -1
 top_level = true
 z_index = 2
@@ -11,7 +11,7 @@ width = 6.0
 texture = ExtResource("1_g4a7t")
 texture_mode = 2
 
-[node name="DataLinePart" type="Node" parent="." node_paths=PackedStringArray("WireDisplay")]
+[node name="DataLinePart" type="Node" parent="." unique_id=842503105 node_paths=PackedStringArray("WireDisplay")]
 process_priority = -1
 script = ExtResource("2_g4a7t")
 WireDisplay = NodePath("..")

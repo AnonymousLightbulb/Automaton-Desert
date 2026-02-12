@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxwu35gkfljq8"]
+[gd_scene format=3 uid="uid://cxwu35gkfljq8"]
 
 [ext_resource type="Script" uid="uid://jnux0rwei6b5" path="res://Scripts/StructuralPart.cs" id="1_y7iat"]
 [ext_resource type="Texture2D" uid="uid://7un33rikymij" path="res://Textures/Wheel.png" id="2_u5up5"]
 
-[node name="Wheel" type="RigidBody2D"]
+[node name="Wheel" type="RigidBody2D" unique_id=827548785]
 collision_layer = 2
 
-[node name="WheelPart" type="Node" parent="." node_paths=PackedStringArray("Body", "BodyShape", "Display")]
+[node name="WheelPart" type="Node" parent="." unique_id=341470157 node_paths=PackedStringArray("Body", "BodyShape", "Display")]
 script = ExtResource("1_y7iat")
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")
@@ -20,7 +20,8 @@ Intake = 0.0
 MaxOutput = 0.0
 Output = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=101650919]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1602105275]
+self_modulate = Color(1, 1, 1, 0.5019608)
 texture = ExtResource("2_u5up5")

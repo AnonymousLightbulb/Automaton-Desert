@@ -272,6 +272,12 @@ public partial class Part : Node
                 public bool Sanatize = ToSanatizeOrNotToSanatize;
             }
 
+            public class Pull(Flag.Value Direction, Flag.Value.FlagReference OutputPoint) : Action
+            {
+                public Flag.Value PullId = Direction;
+                public Flag.Value.FlagReference Output = OutputPoint;
+            }
+
             public class Print(Flag.Value WhatToPrint) : Action
             {
                 public Flag.Value ToPrint = WhatToPrint;
@@ -359,13 +365,6 @@ public partial class Part : Node
                 ShortTermFloatFlags = [];
                 ShortTermBoolFlags = [];
                 ShortTermStringFlags = [];
-                if (Mind == null)
-                {
-                    IntFlags = [];
-                    FloatFlags = [];
-                    BoolFlags = [];
-                    StringFlags = [];
-                }
                 for (int CurrentBehaviour = 0; CurrentBehaviour < Brain.Count; CurrentBehaviour++)
                 {
                     for (int CurrentBrainSentence = 0; CurrentBrainSentence < Brain[CurrentBehaviour].Task.Count; CurrentBrainSentence++)
@@ -516,6 +515,41 @@ public partial class Part : Node
                                                         return ToSanatize;
                                                     }
                                                 }
+                                            }
+                                            foreach (DataLine item in Target)
+                                            {
+                                                item.RunCommands(ToSend, ToHoldFlags);
+                                            }
+                                        }
+                                        else if (Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] is BrainWord.Action.Pull)
+                                        {
+                                            Part ToHoldFlags = null;
+                                            if ((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.Pass).Sanatize == true)
+                                            {
+                                                ToHoldFlags = FlagHolder;
+                                            }
+                                            Passed = true;
+                                            List<DataLine> Target = [];
+                                            foreach (Node item in GetParent().GetChildren())
+                                            {
+                                                if (item is Line2D)
+                                                {
+                                                    if (item.GetChildCount() > 0 && item.GetChild(0) is DataLine)
+                                                    {
+                                                        if ((item.GetChild(0) as DataLine).PassId == FindInt((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.Pass).PassId))
+                                                        {
+                                                            Target.Add(item.GetChild(0) as DataLine);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            List<Behaviour> ToSend = [new([[]])];
+
+                                            while (WordId < Brain[CurrentBehaviour].Task[CurrentBrainSentence].Count - 1)
+                                            {
+                                                WordId += 1;
+                                                ToSend[0].Task[0].Add(Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId]);
+
                                             }
                                             foreach (DataLine item in Target)
                                             {
