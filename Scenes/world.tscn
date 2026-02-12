@@ -75,6 +75,7 @@ Output = 100.0
 [node name="DataLine2" parent="Player/Parts/Core" unique_id=1332072399 instance=ExtResource("8_ikia7")]
 
 [node name="DataLinePart" parent="Player/Parts/Core/DataLine2" index="0" unique_id=842503105 node_paths=PackedStringArray("Target")]
+PullId = 1
 Target = NodePath("../../../SteelStructure/Actuator2/ActuatorPart")
 MaxIntake = 50.0
 Intake = 50.0
@@ -84,6 +85,7 @@ Output = 100.0
 [node name="DataLine3" parent="Player/Parts/Core" unique_id=1637616689 instance=ExtResource("8_ikia7")]
 
 [node name="DataLinePart" parent="Player/Parts/Core/DataLine3" index="0" unique_id=842503105 node_paths=PackedStringArray("Target")]
+PullId = 2
 Target = NodePath("../../../SteelStructure4/Actuator/ActuatorPart")
 MaxIntake = 50.0
 Intake = 50.0
@@ -93,6 +95,7 @@ Output = 100.0
 [node name="DataLine4" parent="Player/Parts/Core" unique_id=1256450168 instance=ExtResource("8_ikia7")]
 
 [node name="DataLinePart" parent="Player/Parts/Core/DataLine4" index="0" unique_id=842503105 node_paths=PackedStringArray("Target")]
+PullId = 3
 Target = NodePath("../../../SteelStructure4/Actuator2/ActuatorPart")
 MaxIntake = 50.0
 Intake = 50.0
