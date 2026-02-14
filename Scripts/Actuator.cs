@@ -42,5 +42,4 @@ public partial class Actuator : Weld
             base._PhysicsProcess(delta);
         }
     }
-
 }

@@ -10,7 +10,7 @@ motor_enabled = true
 [node name="ActuatorPart" type="Node" parent="." unique_id=1647443473 node_paths=PackedStringArray("Joiner", "Display")]
 process_priority = -2
 script = ExtResource("1_w25ol")
-MaxSpeed = 7.0
+MaxSpeed = 3.0
 Joiner = NodePath("..")
 Display = NodePath("../Sprite2D")
 Durability = 100.0

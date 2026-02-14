@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck2hthxsbnjte"]
+[gd_scene format=3 uid="uid://ck2hthxsbnjte"]
 
 [ext_resource type="Script" uid="uid://jnux0rwei6b5" path="res://Scripts/StructuralPart.cs" id="1_ufq66"]
 [ext_resource type="Texture2D" uid="uid://d3b0fwntge5sw" path="res://Textures/Steel.png" id="2_ufq66"]
 
-[node name="SteelStructure" type="RigidBody2D"]
+[node name="SteelStructure" type="RigidBody2D" unique_id=76858489]
 collision_layer = 2
 input_pickable = true
 
-[node name="SteelPart" type="Node" parent="." node_paths=PackedStringArray("Body", "BodyShape", "Display")]
+[node name="SteelPart" type="Node" parent="." unique_id=202849742 node_paths=PackedStringArray("Body", "BodyShape", "Display")]
 script = ExtResource("1_ufq66")
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")
@@ -21,9 +21,9 @@ Intake = 0.0
 MaxOutput = 0.0
 Output = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=297714435]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1753471987]
 z_index = -1
 texture = ExtResource("2_ufq66")
 region_enabled = true

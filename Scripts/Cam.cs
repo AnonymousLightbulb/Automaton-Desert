@@ -2,9 +2,11 @@ using Godot;
 
 public partial class Cam : Camera2D
 {
+    [Export] public Control Ui;
     [Export] float ZoomIn = 1;
     static Cam TheCam;
     [Export] Font TheFont;
+    [Export] public Label EditingMode;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -15,6 +17,14 @@ public partial class Cam : Camera2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        if (GetTree().Paused == true)
+        {
+            EditingMode.Show();
+        }
+        else
+        {
+            EditingMode.Hide();
+        }
         base._Process(delta);
         // Godot.Collections.Array<CamPart> PotentialCams = [];
         // foreach (Node item in (GetParent() as User).Parts.GetChildren())
@@ -31,6 +41,7 @@ public partial class Cam : Camera2D
         // }
         ZoomIn = Mathf.Clamp(ZoomIn - Input.GetAxis("Zoom Out", "Zoom In") * (float)delta, 0.0001f, 0.5f);
         Zoom = new(1 / ZoomIn, 1 / ZoomIn);
+        Scale = new(ZoomIn, ZoomIn);
         GlobalPosition = ((GetParent() as User).TheCore.GetParent().GetParent() as Node2D).GlobalPosition;
     }
 }

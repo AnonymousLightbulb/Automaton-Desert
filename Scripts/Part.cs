@@ -242,7 +242,7 @@ public partial class Part : Node
                 public bool Sanatize = ToSanatizeOrNotToSanatize;
             }
 
-            public class Pull(Flag.Value Direction, Flag.Value.FlagReference OutputPoint) : Action
+            public class Pull(Flag.Value.FlagReference Direction, Flag.Value.FlagReference OutputPoint) : Action
             {
                 public Flag.Value PullId = Direction;
                 public Flag.Value.FlagReference Output = OutputPoint;
@@ -505,6 +505,27 @@ public partial class Part : Node
                                         }
                                         else if (Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] is BrainWord.Action.Pull)
                                         {
+                                            /*DataLine Target = null;
+                                            foreach (Node item in GetParent().GetChildren())
+                                            {
+                                                if (item is Line2D)
+                                                {
+                                                    if (item.GetChildCount() > 0 && item.GetChild(0) is DataLine)
+                                                    {
+                                                        if ((item.GetChild(0) as DataLine).PullId == FindInt((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.Pull).PullId))
+                                                        {
+                                                            Target = item.GetChild(0) as DataLine;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            if (Target != null)
+                                            {
+                                                if ((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.Pull).)
+                                                {
+
+                                                }
+                                            }*/
                                         }
                                         else if (Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] is BrainWord.Action.PartSettings)
                                         {
@@ -632,6 +653,47 @@ public partial class Part : Node
                                                                 break;
                                                         }
                                                     }
+                                                    else if (this is Servo)
+                                                    {
+                                                        switch ((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Operation)
+                                                        {
+                                                            case BrainWord.Flag.Math.Operation.Set:
+                                                                (this as Servo).Speed = FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.Add:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Speed += FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.Subtract:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Speed -= FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.multiply:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Speed *= FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.Divide:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Speed /= FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.Modulus:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Speed %= FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
+                                                                break;
+                                                            default:
+                                                                break;
+                                                        }
+                                                    }
                                                     break;
                                                 case "OutputOpen":
                                                     if (this is PowerLine)
@@ -653,6 +715,49 @@ public partial class Part : Node
                                                         {
                                                             case BrainWord.Flag.Math.Operation.Set:
                                                                 (this as PowerLine).IntakeOpen = FindBool((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                break;
+                                                            default:
+                                                                break;
+                                                        }
+                                                    }
+                                                    break;
+                                                case "Angle":
+                                                    if (this is Servo)
+                                                    {
+                                                        switch ((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Operation)
+                                                        {
+                                                            case BrainWord.Flag.Math.Operation.Set:
+                                                                (this as Servo).Angle = FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.Add:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Angle += FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.Subtract:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Angle -= FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.multiply:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Angle *= FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.Divide:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Angle /= FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
+                                                                break;
+                                                            case BrainWord.Flag.Math.Operation.Modulus:
+                                                                if (Mind != null)
+                                                                {
+                                                                    (this as Servo).Angle %= FindFloat((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                }
                                                                 break;
                                                             default:
                                                                 break;

@@ -7,7 +7,7 @@
 process_priority = -1
 top_level = true
 z_index = 2
-width = 6.0
+width = 3.0
 texture = ExtResource("1_ao6g4")
 texture_mode = 2
 

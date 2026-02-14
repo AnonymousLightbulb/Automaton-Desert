@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8ckfq2rluj2b"]
+[gd_scene format=3 uid="uid://c8ckfq2rluj2b"]
 
 [ext_resource type="Script" uid="uid://jnux0rwei6b5" path="res://Scripts/StructuralPart.cs" id="1_wjmlx"]
 [ext_resource type="Texture2D" uid="uid://bvnnw34o7erxk" path="res://Textures/Battery.png" id="2_wjmlx"]
 
-[node name="Battery" type="RigidBody2D"]
+[node name="Battery" type="RigidBody2D" unique_id=1715015980]
 collision_layer = 2
 input_pickable = true
 
-[node name="BatteryPart" type="Node" parent="." node_paths=PackedStringArray("Body", "BodyShape", "Display")]
+[node name="BatteryPart" type="Node" parent="." unique_id=26472101 node_paths=PackedStringArray("Body", "BodyShape", "Display")]
 script = ExtResource("1_wjmlx")
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")
@@ -22,9 +22,9 @@ MaxOutput = 500000.0
 Output = 500000.0
 WireOffset = Vector2(4, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=60845718]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=407692988]
 z_index = -1
 texture = ExtResource("2_wjmlx")
 region_enabled = true

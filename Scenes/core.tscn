@@ -7,16 +7,16 @@
 [node name="Core" type="RigidBody2D" unique_id=1198044548]
 collision_layer = 2
 
-[node name="StructuralPart" type="Node" parent="." unique_id=526887487 node_paths=PackedStringArray("Body", "BodyShape", "Display", "Mind")]
+[node name="CorePart" type="Node" parent="." unique_id=526887487 node_paths=PackedStringArray("Body", "BodyShape", "Display", "Mind")]
 script = ExtResource("1_wtb72")
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")
 Size = Vector2i(9, 9)
 Density = 0.4
 Display = NodePath("../Sprite2D")
-Mind = NodePath("CorePart")
+Mind = NodePath("CoreThinker")
 
-[node name="CorePart" type="Node" parent="StructuralPart" unique_id=973913008]
+[node name="CoreThinker" type="Node" parent="CorePart" unique_id=973913008]
 script = ExtResource("1_pghlq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452579944]

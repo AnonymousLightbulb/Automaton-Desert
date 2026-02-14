@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rqvumecbxllw" path="res://Scripts/Weld.cs" id="1_hivti"]
 [ext_resource type="Texture2D" uid="uid://dnkeolbuegeoq" path="res://Textures/Weld.png" id="2_eqej5"]
 
-[node name="Weld" type="PinJoint2D" unique_id=1313878204]
+[node name="Weld" type="PinJoint2D" unique_id=1088574459]
 process_priority = -2
 z_index = 1
 angular_limit_enabled = true
