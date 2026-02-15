@@ -5,7 +5,8 @@ public partial class Player : User
 {
     // bool MoveRobot;
     [Export] Godot.Collections.Dictionary<string, string> KeyInput = []; // Creates an empty dictionary.
-                                                                         // Called when the node enters the scene tree for the first time.
+    bool QueuedPause;
+    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
@@ -32,5 +33,4 @@ public partial class Player : User
             }
         }
     }
-
 }

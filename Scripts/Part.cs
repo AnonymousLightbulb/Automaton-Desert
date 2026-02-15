@@ -5,7 +5,7 @@ public partial class Part : Node
 {
     [Export] public User MyUser;
     [Export] public Sprite2D Display;
-    [Export] public float MaxDurability = 100;
+    [Export] public float MaxDurability = 1000;
     [Export] public float Durability = 1000;
     [Export] public float MaxMaxElectricity = 1000;
     [Export] public float MaxElectricity = 1000;
@@ -1702,7 +1702,10 @@ public partial class Part : Node
         }
         else
         {
-            (this as DataLine).Target.RunCommands(Brain, FlagHolder);
+            if ((this as DataLine).Target != null)
+            {
+                (this as DataLine).Target.RunCommands(Brain, FlagHolder);
+            }
         }
     }
 }

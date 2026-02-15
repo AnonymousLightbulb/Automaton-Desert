@@ -17,34 +17,37 @@ public partial class PowerLine : Wire
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (Reverse == false)
+        if (Target != null)
         {
-            if (IntakeOpen == true)
+            if (Reverse == false)
             {
-                float IntakeAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Intake * (float)delta, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta), 0, (WireDisplay.GetParent().GetChild(0) as Part).Electricity), 0, MaxElectricity - Electricity);
-                (WireDisplay.GetParent().GetChild(0) as Part).Electricity -= IntakeAmount;
-                Electricity += IntakeAmount;
+                if (IntakeOpen == true)
+                {
+                    float IntakeAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Intake * (float)delta, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta), 0, (WireDisplay.GetParent().GetChild(0) as Part).Electricity), 0, MaxElectricity - Electricity);
+                    (WireDisplay.GetParent().GetChild(0) as Part).Electricity -= IntakeAmount;
+                    Electricity += IntakeAmount;
+                }
+                if (OutputOpen == true)
+                {
+                    float OutputAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Electricity, 0, Output * (float)delta), 0, Target.Intake), 0, Target.MaxElectricity - Target.Electricity);
+                    Electricity -= OutputAmount;
+                    Target.Electricity += OutputAmount;
+                }
             }
-            if (OutputOpen == true)
+            else
             {
-                float OutputAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Electricity, 0, Output * (float)delta), 0, Target.Intake), 0, Target.MaxElectricity - Target.Electricity);
-                Electricity -= OutputAmount;
-                Target.Electricity += OutputAmount;
-            }
-        }
-        else
-        {
-            if (IntakeOpen == true)
-            {
-                float IntakeAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Intake * (float)delta, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta), 0, (WireDisplay.GetParent().GetChild(0) as Part).Electricity), 0, MaxElectricity - Electricity);
-                Target.Electricity -= IntakeAmount;
-                Electricity += IntakeAmount;
-            }
-            if (OutputOpen == true)
-            {
-                float OutputAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Electricity, 0, Output * (float)delta), 0, Target.Intake), 0, Target.MaxElectricity - Target.Electricity);
-                Electricity -= OutputAmount;
-                (WireDisplay.GetParent().GetChild(0) as Part).Electricity += OutputAmount;
+                if (IntakeOpen == true)
+                {
+                    float IntakeAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Intake * (float)delta, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta), 0, (WireDisplay.GetParent().GetChild(0) as Part).Electricity), 0, MaxElectricity - Electricity);
+                    Target.Electricity -= IntakeAmount;
+                    Electricity += IntakeAmount;
+                }
+                if (OutputOpen == true)
+                {
+                    float OutputAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Electricity, 0, Output * (float)delta), 0, Target.Intake), 0, Target.MaxElectricity - Target.Electricity);
+                    Electricity -= OutputAmount;
+                    (WireDisplay.GetParent().GetChild(0) as Part).Electricity += OutputAmount;
+                }
             }
         }
         base._PhysicsProcess(delta);

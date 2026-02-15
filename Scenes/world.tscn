@@ -78,6 +78,7 @@ position = Vector2(0, -28)
 
 [node name="DataLinePart" parent="Player/Parts/Core/DataLine" index="0" unique_id=842503105 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../SteelStructure/Actuator/ActuatorPart")
+MaxDurability = 100.0
 MaxIntake = 50.0
 Intake = 50.0
 MaxOutput = 100.0
@@ -88,6 +89,7 @@ Output = 100.0
 [node name="DataLinePart" parent="Player/Parts/Core/DataLine2" index="0" unique_id=842503105 node_paths=PackedStringArray("Target")]
 PullId = 1
 Target = NodePath("../../../SteelStructure/Actuator2/ActuatorPart")
+MaxDurability = 100.0
 MaxIntake = 50.0
 Intake = 50.0
 MaxOutput = 100.0
@@ -98,6 +100,7 @@ Output = 100.0
 [node name="DataLinePart" parent="Player/Parts/Core/DataLine3" index="0" unique_id=842503105 node_paths=PackedStringArray("Target")]
 PullId = 2
 Target = NodePath("../../../SteelStructure4/Actuator/ActuatorPart")
+MaxDurability = 100.0
 MaxIntake = 50.0
 Intake = 50.0
 MaxOutput = 100.0
@@ -108,6 +111,7 @@ Output = 100.0
 [node name="DataLinePart" parent="Player/Parts/Core/DataLine4" index="0" unique_id=842503105 node_paths=PackedStringArray("Target")]
 PullId = 3
 Target = NodePath("../../../SteelStructure4/Actuator2/ActuatorPart")
+MaxDurability = 100.0
 MaxIntake = 50.0
 Intake = 50.0
 MaxOutput = 100.0
@@ -119,6 +123,7 @@ Output = 100.0
 PassId = 1
 PullId = 4
 Target = NodePath("../../Servo/ServoPart")
+MaxDurability = 100.0
 MaxIntake = 50.0
 Intake = 50.0
 MaxOutput = 100.0
@@ -129,14 +134,12 @@ position = Vector2(0, 5)
 
 [node name="WeldPart" parent="Player/Parts/Core/Weld" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Battery")
+MaxDurability = 100.0
 
 [node name="Servo" parent="Player/Parts/Core" unique_id=1313878204 instance=ExtResource("13_t2t4p")]
 position = Vector2(0, -3)
-angular_limit_enabled = false
 
 [node name="ServoPart" parent="Player/Parts/Core/Servo" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
-Speed = 2.0
-Angle = 50.0
 Target = NodePath("../../../SteelStructure5")
 
 [node name="Battery" parent="Player/Parts" unique_id=825131258 instance=ExtResource("11_7yui6")]
@@ -151,6 +154,7 @@ Electricity = 500000.0
 IntakeOpen = true
 OutputOpen = true
 Target = NodePath("../../../SteelStructure/Actuator/ActuatorPart")
+MaxDurability = 100.0
 Durability = 100.0
 MaxMaxElectricity = 100.0
 MaxElectricity = 7.5
@@ -163,6 +167,7 @@ Intake = 50.0
 IntakeOpen = true
 OutputOpen = true
 Target = NodePath("../../../SteelStructure/Actuator2/ActuatorPart")
+MaxDurability = 100.0
 Durability = 100.0
 MaxMaxElectricity = 100.0
 MaxElectricity = 7.5
@@ -175,6 +180,7 @@ Intake = 50.0
 IntakeOpen = true
 OutputOpen = true
 Target = NodePath("../../../SteelStructure4/Actuator/ActuatorPart")
+MaxDurability = 100.0
 Durability = 100.0
 MaxMaxElectricity = 100.0
 MaxElectricity = 100.0
@@ -187,6 +193,7 @@ Intake = 50.0
 IntakeOpen = true
 OutputOpen = true
 Target = NodePath("../../../SteelStructure4/Actuator2/ActuatorPart")
+MaxDurability = 100.0
 Durability = 100.0
 MaxMaxElectricity = 100.0
 MaxElectricity = 100.0
@@ -199,6 +206,7 @@ Intake = 50.0
 IntakeOpen = true
 OutputOpen = true
 Target = NodePath("../../../Core/Servo/ServoPart")
+MaxDurability = 100.0
 Durability = 100.0
 MaxMaxElectricity = 100.0
 MaxElectricity = 100.0
@@ -209,6 +217,7 @@ Intake = 50.0
 
 [node name="DataLinePart" parent="Player/Parts/Battery/DataLine" index="0" unique_id=842503105 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Core/CorePart")
+MaxDurability = 100.0
 MaxIntake = 50.0
 Intake = 50.0
 MaxOutput = 100.0
@@ -228,42 +237,49 @@ position = Vector2(0, -2)
 
 [node name="WeldPart" parent="Player/Parts/SteelStructure/Weld" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../GasEngine")
+MaxDurability = 100.0
 
 [node name="Weld2" parent="Player/Parts/SteelStructure" unique_id=136538608 instance=ExtResource("7_o06y3")]
 position = Vector2(-9, -2)
 
 [node name="WeldPart" parent="Player/Parts/SteelStructure/Weld2" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Storage")
+MaxDurability = 100.0
 
 [node name="Weld3" parent="Player/Parts/SteelStructure" unique_id=1366149929 instance=ExtResource("7_o06y3")]
 position = Vector2(9, -2)
 
 [node name="WeldPart" parent="Player/Parts/SteelStructure/Weld3" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Storage2")
+MaxDurability = 100.0
 
 [node name="Weld4" parent="Player/Parts/SteelStructure" unique_id=1767040354 instance=ExtResource("7_o06y3")]
 position = Vector2(-30, 0)
 
 [node name="WeldPart" parent="Player/Parts/SteelStructure/Weld4" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../SteelStructure2")
+MaxDurability = 100.0
 
 [node name="Weld5" parent="Player/Parts/SteelStructure" unique_id=1300827358 instance=ExtResource("7_o06y3")]
 position = Vector2(30, 0)
 
 [node name="WeldPart" parent="Player/Parts/SteelStructure/Weld5" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../SteelStructure3")
+MaxDurability = 100.0
 
 [node name="Actuator" parent="Player/Parts/SteelStructure" unique_id=1979841542 instance=ExtResource("9_5v1tr")]
 position = Vector2(-30, 0)
 
 [node name="ActuatorPart" parent="Player/Parts/SteelStructure/Actuator" index="0" unique_id=1647443473 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Wheel")
+MaxDurability = 100.0
 
 [node name="Actuator2" parent="Player/Parts/SteelStructure" unique_id=636652763 instance=ExtResource("9_5v1tr")]
 position = Vector2(30, 0)
 
 [node name="ActuatorPart" parent="Player/Parts/SteelStructure/Actuator2" index="0" unique_id=1647443473 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Wheel2")
+MaxDurability = 100.0
 
 [node name="SteelStructure2" parent="Player/Parts" unique_id=30821302 instance=ExtResource("8_k7acu")]
 position = Vector2(-30, -28.5)
@@ -280,6 +296,7 @@ position = Vector2(0, -28.5)
 
 [node name="WeldPart" parent="Player/Parts/SteelStructure2/Weld" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../SteelStructure4")
+MaxDurability = 100.0
 
 [node name="SteelStructure3" parent="Player/Parts" unique_id=616520334 instance=ExtResource("8_k7acu")]
 position = Vector2(30, -28.5)
@@ -296,6 +313,7 @@ position = Vector2(0, -28.5)
 
 [node name="WeldPart" parent="Player/Parts/SteelStructure3/Weld" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../SteelStructure4")
+MaxDurability = 100.0
 
 [node name="SteelStructure4" parent="Player/Parts" unique_id=1374782756 instance=ExtResource("8_k7acu")]
 position = Vector2(0, -57)
@@ -311,21 +329,23 @@ position = Vector2(-30, 0)
 
 [node name="ActuatorPart" parent="Player/Parts/SteelStructure4/Actuator" index="0" unique_id=1647443473 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Wheel3")
+MaxDurability = 100.0
 
 [node name="Actuator2" parent="Player/Parts/SteelStructure4" unique_id=1635899028 instance=ExtResource("9_5v1tr")]
 position = Vector2(30, 0)
 
 [node name="ActuatorPart" parent="Player/Parts/SteelStructure4/Actuator2" index="0" unique_id=1647443473 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Wheel4")
+MaxDurability = 100.0
 
-[node name="SteelStructure5" parent="Player/Parts" unique_id=1375050921 instance=ExtResource("8_k7acu")]
-position = Vector2(0, -43)
+[node name="SteelStructure5" parent="Player/Parts" unique_id=76858489 instance=ExtResource("8_k7acu")]
+position = Vector2(0, -40)
 
 [node name="SteelPart" parent="Player/Parts/SteelStructure5" index="0" unique_id=202849742]
-Size = Vector2i(3, 27)
+Size = Vector2i(3, 21)
 
 [node name="Sprite2D" parent="Player/Parts/SteelStructure5" index="2" unique_id=1753471987]
-region_rect = Rect2(0, 0, 3, 27)
+region_rect = Rect2(0, 0, 3, 21)
 
 [node name="Wheel" parent="Player/Parts" unique_id=827555926 instance=ExtResource("10_0fj1v")]
 position = Vector2(-30, -12)
@@ -366,19 +386,27 @@ scale = Vector2(4, 4)
 [node name="GasEngine" parent="Player/Parts" unique_id=1522898687 instance=ExtResource("13_c5t2i")]
 position = Vector2(0, -17)
 
+[node name="GasEnginePart" parent="Player/Parts/GasEngine" index="0" unique_id=1046212610]
+MaxDurability = 100.0
+
 [node name="PowerLine" parent="Player/Parts/GasEngine" unique_id=19373572 instance=ExtResource("7_ikia7")]
 
 [node name="PoweLinePart" parent="Player/Parts/GasEngine/PowerLine" index="0" unique_id=604481719 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Battery/BatteryPart")
+MaxDurability = 100.0
 
 [node name="Weld" parent="Player/Parts/GasEngine" unique_id=703206526 instance=ExtResource("7_o06y3")]
 position = Vector2(0, -4)
 
 [node name="WeldPart" parent="Player/Parts/GasEngine/Weld" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Battery")
+MaxDurability = 100.0
 
 [node name="Storage" parent="Player/Parts" unique_id=778640208 instance=ExtResource("14_e0ngr")]
 position = Vector2(-9, -17)
+
+[node name="StoragePart" parent="Player/Parts/Storage" index="0" unique_id=748960007]
+MaxDurability = 100.0
 
 [node name="Item" parent="Player/Parts/Storage" index="3" unique_id=350543090]
 ItemType = "metal"
@@ -399,9 +427,13 @@ InputSlot = 1
 Open = true
 SendAll = true
 Target = NodePath("../../../GasEngine/GasEnginePart")
+MaxDurability = 100.0
 
 [node name="Storage2" parent="Player/Parts" unique_id=186399769 instance=ExtResource("14_e0ngr")]
 position = Vector2(9, -17)
+
+[node name="StoragePart" parent="Player/Parts/Storage2" index="0" unique_id=748960007]
+MaxDurability = 100.0
 
 [editable path="Player/Parts/Core"]
 [editable path="Player/Parts/Core/DataLine"]
