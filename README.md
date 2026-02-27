@@ -1,5 +1,5 @@
 # Automaton-Desert
-Automaton Desert uses an all rights reserved license
+Automaton Desert uses the MIT License
 
 # Godot-Rapier-Physics
 Automaton Desert uses Godot and the Godot-Rapier-Physics plugin which both use The MIT License
