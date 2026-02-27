@@ -5,6 +5,7 @@
 
 [node name="Servo" type="PinJoint2D" unique_id=1313878204]
 process_priority = -2
+process_physics_priority = -2
 z_index = 1
 motor_enabled = true
 

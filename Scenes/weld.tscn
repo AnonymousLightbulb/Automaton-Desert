@@ -5,6 +5,7 @@
 
 [node name="Weld" type="PinJoint2D" unique_id=1088574459]
 process_priority = -2
+process_physics_priority = -2
 z_index = 1
 angular_limit_enabled = true
 

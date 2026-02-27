@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cxwu35gkfljq8" path="res://Scenes/wheel.tscn" id="10_0fj1v"]
 [ext_resource type="PackedScene" uid="uid://c8ckfq2rluj2b" path="res://Scenes/battery.tscn" id="11_7yui6"]
 [ext_resource type="PackedScene" uid="uid://dvvp4luo0lu6a" path="res://Scenes/gas_engine.tscn" id="13_c5t2i"]
-[ext_resource type="PackedScene" uid="uid://djs0280bu0jnp" path="res://Scenes/servo.tscn" id="13_t2t4p"]
 [ext_resource type="PackedScene" uid="uid://bjxgx10h1d57w" path="res://Scenes/storage.tscn" id="14_e0ngr"]
 [ext_resource type="PackedScene" uid="uid://bww84whfycwdi" path="res://Scenes/item_pipe.tscn" id="15_kn0ld"]
 
@@ -67,6 +66,7 @@ offset_top = -324.216
 offset_bottom = -304.216
 scale = Vector2(2, 2)
 text = "Editing Mode"
+metadata/_edit_use_anchors_ = true
 
 [node name="Parts" type="Node" parent="Player" unique_id=1637603906]
 process_mode = 1
@@ -119,10 +119,9 @@ Output = 100.0
 
 [node name="DataLine5" parent="Player/Parts/Core" unique_id=975369023 instance=ExtResource("8_ikia7")]
 
-[node name="DataLinePart" parent="Player/Parts/Core/DataLine5" index="0" unique_id=842503105 node_paths=PackedStringArray("Target")]
+[node name="DataLinePart" parent="Player/Parts/Core/DataLine5" index="0" unique_id=842503105]
 PassId = 1
 PullId = 4
-Target = NodePath("../../Servo/ServoPart")
 MaxDurability = 100.0
 MaxIntake = 50.0
 Intake = 50.0
@@ -135,12 +134,6 @@ position = Vector2(0, 5)
 [node name="WeldPart" parent="Player/Parts/Core/Weld" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
 Target = NodePath("../../../Battery")
 MaxDurability = 100.0
-
-[node name="Servo" parent="Player/Parts/Core" unique_id=1313878204 instance=ExtResource("13_t2t4p")]
-position = Vector2(0, -3)
-
-[node name="ServoPart" parent="Player/Parts/Core/Servo" index="0" unique_id=257839463 node_paths=PackedStringArray("Target")]
-Target = NodePath("../../../SteelStructure5")
 
 [node name="Battery" parent="Player/Parts" unique_id=825131258 instance=ExtResource("11_7yui6")]
 position = Vector2(0, -22)
@@ -202,10 +195,9 @@ Intake = 50.0
 
 [node name="PowerLine5" parent="Player/Parts/Battery" unique_id=563645352 instance=ExtResource("7_ikia7")]
 
-[node name="PoweLinePart" parent="Player/Parts/Battery/PowerLine5" index="0" unique_id=604481719 node_paths=PackedStringArray("Target")]
+[node name="PoweLinePart" parent="Player/Parts/Battery/PowerLine5" index="0" unique_id=604481719]
 IntakeOpen = true
 OutputOpen = true
-Target = NodePath("../../../Core/Servo/ServoPart")
 MaxDurability = 100.0
 Durability = 100.0
 MaxMaxElectricity = 100.0
@@ -338,15 +330,6 @@ position = Vector2(30, 0)
 Target = NodePath("../../../Wheel4")
 MaxDurability = 100.0
 
-[node name="SteelStructure5" parent="Player/Parts" unique_id=76858489 instance=ExtResource("8_k7acu")]
-position = Vector2(0, -40)
-
-[node name="SteelPart" parent="Player/Parts/SteelStructure5" index="0" unique_id=202849742]
-Size = Vector2i(3, 21)
-
-[node name="Sprite2D" parent="Player/Parts/SteelStructure5" index="2" unique_id=1753471987]
-region_rect = Rect2(0, 0, 3, 21)
-
 [node name="Wheel" parent="Player/Parts" unique_id=827555926 instance=ExtResource("10_0fj1v")]
 position = Vector2(-30, -12)
 
@@ -442,7 +425,6 @@ MaxDurability = 100.0
 [editable path="Player/Parts/Core/DataLine4"]
 [editable path="Player/Parts/Core/DataLine5"]
 [editable path="Player/Parts/Core/Weld"]
-[editable path="Player/Parts/Core/Servo"]
 [editable path="Player/Parts/Battery"]
 [editable path="Player/Parts/Battery/PowerLine"]
 [editable path="Player/Parts/Battery/PowerLine2"]
@@ -465,7 +447,6 @@ MaxDurability = 100.0
 [editable path="Player/Parts/SteelStructure4"]
 [editable path="Player/Parts/SteelStructure4/Actuator"]
 [editable path="Player/Parts/SteelStructure4/Actuator2"]
-[editable path="Player/Parts/SteelStructure5"]
 [editable path="Player/Parts/Wheel"]
 [editable path="Player/Parts/Wheel2"]
 [editable path="Player/Parts/Wheel3"]

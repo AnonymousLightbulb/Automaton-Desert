@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://btce2hivl8tjn" path="res://Textures/Acutator.png" id="2_w25ol"]
 
 [node name="Actuator" type="PinJoint2D" unique_id=51890031]
+process_priority = -2
+process_physics_priority = -2
 z_index = 1
 motor_enabled = true
 
