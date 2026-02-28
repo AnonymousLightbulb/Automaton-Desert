@@ -4,7 +4,9 @@ using System.Collections.Generic;
 public partial class World : Node2D
 {
     public static World TheWorld;
+    [Export] public Node Entities;
     [Export] public PackedScene CoreTemplate;
+    [Export] public PackedScene FallingBlockTemplate;
     [Export] public Godot.Collections.Dictionary<Vector2I, float> TileDamages = [];
     [Export] public TileMapLayer Map;
     [Export] public TileMapLayer DamagedTiles;
@@ -84,7 +86,14 @@ public partial class World : Node2D
         {
             if (Map.GetCellSourceId(Target) == 0)
             {
-                MoveTile(Target, Target + Vector2I.Down);
+                if (!Map.GetUsedCells().Contains(Target + Vector2I.Down))
+                {
+                    var asdf = FallingBlockTemplate.Instantiate<RigidBody2D>();
+                    asdf.Position = Map.ToGlobal(Map.MapToLocal(Target));
+                    Map.EraseCell(Target);
+                    Entities.AddChild(asdf);
+                    UpdateTile(Target + Vector2I.Up);
+                }
             }
         }
     }
