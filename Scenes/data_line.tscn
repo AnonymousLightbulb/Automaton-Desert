@@ -15,6 +15,7 @@ texture_mode = 2
 process_priority = -1
 script = ExtResource("2_g4a7t")
 WireDisplay = NodePath("..")
+MaxDurability = 100.0
 Durability = 100.0
 MaxMaxElectricity = 0.0
 MaxElectricity = 0.0

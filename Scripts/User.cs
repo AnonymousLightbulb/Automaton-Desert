@@ -19,7 +19,7 @@ public partial class User : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        base._PhysicsProcess(delta);
+        ClaimParts(Parts);
         if (TheCore == null)
         {
             CoreDescend(Parts);
@@ -32,8 +32,8 @@ public partial class User : Node
         }
         TheCore.OldInputs = TheCore.Inputs;
         TheCore.Inputs = [];
+        base._PhysicsProcess(delta);
     }
-
 
     public void CoreDescend(Node Target)
     {
@@ -50,6 +50,18 @@ public partial class User : Node
                     CoreDescend(Target2);
                 }
             }
+        }
+    }
+
+    public void ClaimParts(Node PotentialPart)
+    {
+        if (PotentialPart is Part)
+        {
+            (PotentialPart as Part).MyUser = this;
+        }
+        foreach (Node item in PotentialPart.GetChildren())
+        {
+            ClaimParts(item);
         }
     }
 }

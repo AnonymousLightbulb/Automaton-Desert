@@ -66,23 +66,36 @@ public partial class ItemPipe : Wire
                 }
                 foreach (Vector2I item in Transfers)
                 {
-                    TransferItem((float)delta, (par as Storage).Items[item.X], (Target as Storage).Items[item.Y], TransferRate / Transfers.Count);
+                    TransferItem((float)delta, (par as Storage).Items[item.X], (Target as Storage).Items[item.Y], TransferRate);
                 }
             }
         }
         base._PhysicsProcess(delta);
     }
+    // TakeIn is the inventory that goes into the pipe and SendOut is the inventory that the pipe empties into
     public void TransferItem(float delta, Inventory TakeIn, Inventory SendOut, float TransferVolume)
     {
-        if (TakeIn.IsItemTypeDynamic == true && Mathf.IsEqualApprox(SendOut.ItemCount, 0))
+        if (SendOut.IsItemTypeDynamic == true && Mathf.IsEqualApprox(SendOut.ItemCountF, 0) && SendOut.ItemCountI == 0)
         {
             SendOut.ItemType = TakeIn.ItemType;
         }
-        if (TakeIn.ItemType == SendOut.ItemType || TakeIn.IsItemTypeDynamic == true && Mathf.IsEqualApprox(SendOut.ItemCount, 0))
+        if (TakeIn.ItemType == SendOut.ItemType)
         {
-            float TransferAmmount = Mathf.Clamp(TakeIn.ItemCount, 0, Mathf.Clamp((Target as Storage).MaxFullness - (Target as Storage).Fullness(), 0, TransferVolume * delta));
-            TakeIn.ItemCount -= TransferAmmount;
-            SendOut.ItemCount += TransferAmmount;
+            if (Inventory.ItemTypeDictionary.ContainsKey(TakeIn.ItemType))
+            {
+                if (Inventory.ItemTypeDictionary[TakeIn.ItemType] == true)
+                {
+                    float TransferAmmount = Mathf.Clamp(TakeIn.ItemCountF, 0, Mathf.Clamp((Target as Storage).MaxFullness - (Target as Storage).Fullness(), 0, TransferVolume * delta));
+                    TakeIn.ItemCountF -= TransferAmmount;
+                    SendOut.ItemCountF += TransferAmmount;
+                }
+                else
+                {
+                    int TransferAmmount = Mathf.Clamp(TakeIn.ItemCountI, 0, Mathf.Clamp(Mathf.FloorToInt((Target as Storage).MaxFullness - (Target as Storage).Fullness()), 0, Mathf.FloorToInt(TransferVolume * delta)));
+                    TakeIn.ItemCountI -= TransferAmmount;
+                    SendOut.ItemCountI += TransferAmmount;
+                }
+            }
         }
     }
 }

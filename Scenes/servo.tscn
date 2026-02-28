@@ -18,5 +18,4 @@ Display = NodePath("../Sprite2D")
 MaxDurability = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1031975218]
-self_modulate = Color(1, 1, 1, 0.5019608)
 texture = ExtResource("2_l21s6")

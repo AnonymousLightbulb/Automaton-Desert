@@ -10,7 +10,15 @@ public partial class Storage : StructuralPart
         float Filledness = 0;
         foreach (Inventory item in Items)
         {
-            Filledness += item.ItemCount;
+            if (item.IsItemFloat() == true)
+            {
+                Filledness += item.ItemCountF;
+            }
+            else
+            {
+                Filledness += item.ItemCountI;
+            }
+
         }
         return Filledness;
     }

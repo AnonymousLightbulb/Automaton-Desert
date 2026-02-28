@@ -1,9 +1,17 @@
 [gd_resource type="TileSet" format=3 uid="uid://5yxufwbbc7cn"]
 
 [ext_resource type="Texture2D" uid="uid://cqb5c8m634bmm" path="res://Textures/Sand.png" id="1_a2gjg"]
+[ext_resource type="Texture2D" uid="uid://d3b0fwntge5sw" path="res://Textures/Steel.png" id="2_nivqn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nivqn"]
+resource_name = "Red Sand"
 texture = ExtResource("1_a2gjg")
+texture_region_size = Vector2i(6, 6)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_snp3v"]
+texture = ExtResource("2_nivqn")
 texture_region_size = Vector2i(6, 6)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
@@ -12,3 +20,4 @@ texture_region_size = Vector2i(6, 6)
 tile_size = Vector2i(6, 6)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_nivqn")
+sources/1 = SubResource("TileSetAtlasSource_snp3v")

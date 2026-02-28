@@ -764,6 +764,20 @@ public partial class Part : Node
                                                         }
                                                     }
                                                     break;
+                                                case "Firing":
+                                                    if (this is LaserGun)
+                                                    {
+                                                        switch ((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Operation)
+                                                        {
+                                                            case BrainWord.Flag.Math.Operation.Set:
+                                                                (this as LaserGun).Firing = FindBool((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                break;
+                                                            default:
+                                                                break;
+                                                        }
+
+                                                    }
+                                                    break;
                                                 default:
                                                     break;
                                             }
