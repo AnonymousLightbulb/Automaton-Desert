@@ -38,9 +38,13 @@ public partial class LaserGun : StructuralPart
             if (LaserBeam.GetCollider() == World.TheWorld.Map)
             {
                 World.TheWorld.DamageTile(World.TheWorld.Map.LocalToMap(World.TheWorld.Map.ToLocal(LaserBeam.GetCollisionPoint() + new Vector2(0.1f, 0).Rotated(GetParent<RigidBody2D>().Rotation))), Strength * (float)delta);
-
             }
-            base._PhysicsProcess(delta);
+            else if (LaserBeam.GetCollider() is FallingBlock)
+            {
+                (LaserBeam.GetCollider() as FallingBlock).Damaged = true;
+                (LaserBeam.GetCollider() as FallingBlock).Damage += Strength * (float)delta;
+            }
         }
+        base._PhysicsProcess(delta);
     }
 }

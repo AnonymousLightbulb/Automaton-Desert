@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o0x404cklexm"
-path="res://.godot/imported/Sand.png-9cee804cf2cf1b7503883707b42c0658.ctex"
+uid="uid://crynnuc36rwnt"
+path="res://.godot/imported/Sandstone.png-6534d651c9acb51912310315bb7ac4ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Sand.png"
-dest_files=["res://.godot/imported/Sand.png-9cee804cf2cf1b7503883707b42c0658.ctex"]
+source_file="res://Textures/Sandstone.png"
+dest_files=["res://.godot/imported/Sandstone.png-6534d651c9acb51912310315bb7ac4ce.ctex"]
 
 [params]
 

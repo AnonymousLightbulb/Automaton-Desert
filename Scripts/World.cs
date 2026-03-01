@@ -12,11 +12,12 @@ public partial class World : Node2D
     [Export] public TileMapLayer DamagedTiles;
     public RandomNumberGenerator Bob;
 
-    public static Dictionary<int, float> DamageMultipliers = new()
-    {
-        {0, 1},
-        {1, 0.125f},
-    };
+    public static List<float> TileDurabilities =
+    [
+        10,
+        100,
+        20,
+    ];
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -43,12 +44,8 @@ public partial class World : Node2D
         base._PhysicsProcess(delta);
     }
 
-    public void DamageTile(Vector2I Target, float Damage, bool IgnoreMultiplier = false)
+    public void DamageTile(Vector2I Target, float Damage)
     {
-        if (IgnoreMultiplier == false && Map.GetCellSourceId(Target) != -1)
-        {
-            Damage *= DamageMultipliers[Map.GetCellSourceId(Target)];
-        }
         if (TileDamages.ContainsKey(Target))
         {
             TileDamages[Target] += Damage;
@@ -57,27 +54,30 @@ public partial class World : Node2D
         {
             TileDamages.Add(Target, Damage);
         }
-        if (TileDamages[Target] < 2.5f)
+        if (Map.GetCellSourceId(Target) != -1)
         {
-            DamagedTiles.SetCell(Target, 0, Vector2I.Zero, 0);
-        }
-        else if (TileDamages[Target] < 5)
-        {
-            DamagedTiles.SetCell(Target, 1, Vector2I.Zero, 0);
-        }
-        else if (TileDamages[Target] < 7.5f)
-        {
-            DamagedTiles.SetCell(Target, 2, Vector2I.Zero, 0);
-        }
-        else if (TileDamages[Target] < 10)
-        {
-            DamagedTiles.SetCell(Target, 3, Vector2I.Zero, 0);
-        }
-        else if (TileDamages[Target] >= 10)
-        {
-            Map.EraseCell(Target);
-            TileDamages.Remove(Target);
-            UpdateTile(Target + Vector2I.Up);
+            if (TileDamages[Target] < TileDurabilities[Map.GetCellSourceId(Target)] / 4)
+            {
+                DamagedTiles.SetCell(Target, 0, Vector2I.Zero, 0);
+            }
+            else if (TileDamages[Target] < TileDurabilities[Map.GetCellSourceId(Target)] / 2)
+            {
+                DamagedTiles.SetCell(Target, 1, Vector2I.Zero, 0);
+            }
+            else if (TileDamages[Target] < TileDurabilities[Map.GetCellSourceId(Target)] * 3 / 4)
+            {
+                DamagedTiles.SetCell(Target, 2, Vector2I.Zero, 0);
+            }
+            else if (TileDamages[Target] < TileDurabilities[Map.GetCellSourceId(Target)])
+            {
+                DamagedTiles.SetCell(Target, 3, Vector2I.Zero, 0);
+            }
+            else if (TileDamages[Target] >= TileDurabilities[Map.GetCellSourceId(Target)])
+            {
+                Map.EraseCell(Target);
+                TileDamages.Remove(Target);
+                UpdateTile(Target + Vector2I.Up);
+            }
         }
     }
     public void UpdateTile(Vector2I Target)
@@ -88,9 +88,17 @@ public partial class World : Node2D
             {
                 if (!Map.GetUsedCells().Contains(Target + Vector2I.Down))
                 {
-                    var asdf = FallingBlockTemplate.Instantiate<RigidBody2D>();
+                    var asdf = FallingBlockTemplate.Instantiate<FallingBlock>();
                     asdf.Position = Map.ToGlobal(Map.MapToLocal(Target));
+                    if (TileDamages.ContainsKey(Target))
+                    {
+                        asdf.Damaged = true;
+                        asdf.Damage = TileDamages[Target];
+                    }
+                    TileDamages.Remove(Target);
+                    DamagedTiles.EraseCell(Target);
                     Map.EraseCell(Target);
+
                     Entities.AddChild(asdf);
                     UpdateTile(Target + Vector2I.Up);
                 }
@@ -105,7 +113,7 @@ public partial class World : Node2D
             DamagedTiles.EraseCell((MoveTo));
             if (TileDamages.ContainsKey(ToMove))
             {
-                DamageTile(MoveTo, TileDamages[ToMove], true);
+                DamageTile(MoveTo, TileDamages[ToMove]);
             }
             TileDamages.Remove(ToMove);
             DamagedTiles.EraseCell((ToMove));

@@ -1,0 +1,30 @@
+[gd_resource type="TileSet" format=3 uid="uid://bnjftp2rjarw0"]
+
+[ext_resource type="Texture2D" uid="uid://o0x404cklexm" path="res://Textures/Sand.png" id="1_nwmol"]
+[ext_resource type="Texture2D" uid="uid://d3b0fwntge5sw" path="res://Textures/Steel.png" id="2_oyn6s"]
+[ext_resource type="Texture2D" uid="uid://crynnuc36rwnt" path="res://Textures/Sandstone.png" id="3_oyn6s"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nivqn"]
+resource_name = "Red Sand"
+texture = ExtResource("1_nwmol")
+texture_region_size = Vector2i(6, 6)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_snp3v"]
+resource_name = "Steel"
+texture = ExtResource("2_oyn6s")
+texture_region_size = Vector2i(6, 6)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgjul"]
+resource_name = "Sandstone"
+texture = ExtResource("3_oyn6s")
+texture_region_size = Vector2i(6, 6)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(6, 6)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_nivqn")
+sources/1 = SubResource("TileSetAtlasSource_snp3v")
+sources/2 = SubResource("TileSetAtlasSource_lgjul")
