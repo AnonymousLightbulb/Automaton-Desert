@@ -8,7 +8,7 @@
 radius = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo5tb"]
-size = Vector2(5.75, 1)
+size = Vector2(0.001, 1)
 
 [node name="FallingBlock" type="RigidBody2D" unique_id=1901248326 node_paths=PackedStringArray("Image", "DamageImage", "Detector")]
 script = ExtResource("1_374re")

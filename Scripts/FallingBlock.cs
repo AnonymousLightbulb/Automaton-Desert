@@ -8,6 +8,7 @@ public partial class FallingBlock : RigidBody2D
     [Export] public Sprite2D Image;
     [Export] public Sprite2D DamageImage;
     [Export] public Area2D Detector;
+    [Export] public short FailCount = 0;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -45,11 +46,9 @@ public partial class FallingBlock : RigidBody2D
     {
         if (Detector.GetOverlappingBodies().Contains(World.TheWorld.Map))
         {
-            GD.Print("Entered Map");
             Vector2I Target = World.TheWorld.Map.LocalToMap(World.TheWorld.Map.ToLocal(GlobalPosition));
             if (!World.TheWorld.Map.GetUsedCells().Contains(Target))
             {
-                GD.Print("Placed");
                 World.TheWorld.Map.SetCell(Target, ID, Vector2I.Zero, 0);
                 if (Damaged)
                 {
@@ -81,9 +80,15 @@ public partial class FallingBlock : RigidBody2D
                 World.TheWorld.UpdateTile(Target);
                 QueueFree();
             }
+            else
+            {
+                FailCount += 1;
+                if (FailCount >= 1000)
+                {
+                    QueueFree();
+                }
+            }
         }
-
-
         base._PhysicsProcess(delta);
     }
 
