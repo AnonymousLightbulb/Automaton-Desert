@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjxgx10h1d57w"]
 
 [ext_resource type="Script" uid="uid://cxkpqwjyw4bxi" path="res://Scripts/Storage.cs" id="1_ali2p"]
-[ext_resource type="Texture2D" uid="uid://8w8a8yfcwnp5" path="res://Textures/Storage.png" id="2_8na7e"]
+[ext_resource type="Texture2D" uid="uid://8w8a8yfcwnp5" path="res://Textures/Parts/Storage.png" id="2_8na7e"]
 [ext_resource type="Script" uid="uid://cxxg54epcptyx" path="res://Scripts/Inventory.cs" id="3_8na7e"]
 
 [node name="Storage" type="RigidBody2D" unique_id=441906300]
@@ -10,7 +10,6 @@ input_pickable = true
 
 [node name="StoragePart" type="Node" parent="." unique_id=748960007 node_paths=PackedStringArray("Items", "Body", "BodyShape", "Display")]
 script = ExtResource("1_ali2p")
-MaxFullness = 500.0
 Items = [NodePath("Item"), NodePath("Item2"), NodePath("Item3")]
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")

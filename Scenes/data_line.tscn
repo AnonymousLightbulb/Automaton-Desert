@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dwnpgwjdh15b6"]
 
-[ext_resource type="Texture2D" uid="uid://pkoulw475owi" path="res://Textures/DataLine.png" id="1_g4a7t"]
+[ext_resource type="Texture2D" uid="uid://pkoulw475owi" path="res://Textures/Parts/DataLine.png" id="1_g4a7t"]
 [ext_resource type="Script" uid="uid://5jx16b6l4kue" path="res://Scripts/DataLine.cs" id="2_g4a7t"]
 
 [node name="DataLine" type="Line2D" unique_id=975369023]

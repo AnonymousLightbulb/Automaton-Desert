@@ -23,14 +23,18 @@ public partial class PowerLine : Wire
             {
                 if (IntakeOpen == true)
                 {
-                    float IntakeAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Intake * (float)delta, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta), 0, (WireDisplay.GetParent().GetChild(0) as Part).Electricity), 0, MaxElectricity - Electricity);
+                    //float IntakeAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Intake * (float)delta, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta), 0, (WireDisplay.GetParent().GetChild(0) as Part).Electricity), 0, MaxElectricity - Electricity);
+                    float IntakeAmount = Mathf.Clamp((WireDisplay.GetParent().GetChild(0) as Part).Electricity, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta);
+                    //GD.Print((WireDisplay.GetParent().GetChild(0) as Part).Output);
+                    IntakeAmount = Mathf.Clamp(IntakeAmount, 0, Intake * (float)delta);
                     (WireDisplay.GetParent().GetChild(0) as Part).Electricity -= IntakeAmount;
                     Electricity += IntakeAmount;
                 }
                 if (OutputOpen == true)
                 {
-                    float OutputAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Electricity, 0, Output * (float)delta), 0, Target.Intake), 0, Target.MaxElectricity - Target.Electricity);
-                    Electricity -= OutputAmount;
+                    //float OutputAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Electricity, 0, Output * (float)delta), 0, Target.Intake), 0, Target.MaxElectricity - Target.Electricity);
+                    float OutputAmount = Mathf.Clamp(Electricity, 0, Output * (float)delta);
+                    OutputAmount = Mathf.Clamp(OutputAmount, 0, Target.Intake * (float)delta); Electricity -= OutputAmount;
                     Target.Electricity += OutputAmount;
                 }
             }
@@ -38,14 +42,18 @@ public partial class PowerLine : Wire
             {
                 if (IntakeOpen == true)
                 {
-                    float IntakeAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Intake * (float)delta, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta), 0, (WireDisplay.GetParent().GetChild(0) as Part).Electricity), 0, MaxElectricity - Electricity);
+                    //float IntakeAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Intake * (float)delta, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta), 0, (WireDisplay.GetParent().GetChild(0) as Part).Electricity), 0, MaxElectricity - Electricity);
+                    float IntakeAmount = Mathf.Clamp(Target.Electricity, 0, (WireDisplay.GetParent().GetChild(0) as Part).Output * (float)delta);
+                    IntakeAmount = Mathf.Clamp(IntakeAmount, 0, Intake * (float)delta);
+                    (WireDisplay.GetParent().GetChild(0) as Part).Electricity -= IntakeAmount;
                     Target.Electricity -= IntakeAmount;
                     Electricity += IntakeAmount;
                 }
                 if (OutputOpen == true)
                 {
-                    float OutputAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Electricity, 0, Output * (float)delta), 0, Target.Intake), 0, Target.MaxElectricity - Target.Electricity);
-                    Electricity -= OutputAmount;
+                    //float OutputAmount = Mathf.Clamp(Mathf.Clamp(Mathf.Clamp(Electricity, 0, Output * (float)delta), 0, Target.Intake), 0, Target.MaxElectricity - Target.Electricity);
+                    float OutputAmount = Mathf.Clamp(Electricity, 0, Output * (float)delta);
+                    OutputAmount = Mathf.Clamp(OutputAmount, 0, (WireDisplay.GetParent().GetChild(0) as Part).Intake * (float)delta); Electricity -= OutputAmount;
                     (WireDisplay.GetParent().GetChild(0) as Part).Electricity += OutputAmount;
                 }
             }

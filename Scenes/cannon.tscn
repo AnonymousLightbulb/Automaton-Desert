@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cnh3dnk41kfch"]
+
+[ext_resource type="Script" uid="uid://c4npfs061irbg" path="res://Scripts/Cannon.cs" id="1_qlvt6"]
+[ext_resource type="Texture2D" uid="uid://c1pe6yjcahvln" path="res://Textures/Parts/Cannon.png" id="2_3uv2y"]
+[ext_resource type="PackedScene" uid="uid://cu8qqphb2w8ad" path="res://Scenes/launched_block.tscn" id="2_ognwi"]
+[ext_resource type="Script" uid="uid://cxxg54epcptyx" path="res://Scripts/Inventory.cs" id="4_ognwi"]
+
+[node name="Cannon" type="RigidBody2D" unique_id=76858489]
+collision_layer = 2
+input_pickable = true
+
+[node name="CannonPart" type="Node" parent="." unique_id=202849742 node_paths=PackedStringArray("Items", "Body", "BodyShape", "Display")]
+script = ExtResource("1_qlvt6")
+LaunchedBlock = ExtResource("2_ognwi")
+Items = [NodePath("Item")]
+Body = NodePath("..")
+BodyShape = NodePath("../CollisionShape2D")
+Size = Vector2i(7, 7)
+Density = 0.3
+Display = NodePath("../Sprite2D")
+
+[node name="Item" type="Node" parent="CannonPart" unique_id=45011295]
+script = ExtResource("4_ognwi")
+IsItemTypeDynamic = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=297714435]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1753471987]
+texture = ExtResource("2_3uv2y")
+region_enabled = true
+region_rect = Rect2(0, 0, 7, 7)
+
+[node name="Line2D" type="Line2D" parent="." unique_id=931210317]
+top_level = true
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
+closed = true
+width = 2.0
+default_color = Color(0, 0.94509804, 1, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

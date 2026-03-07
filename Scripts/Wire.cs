@@ -26,6 +26,7 @@ public partial class Wire : Part
             {
                 WireDisplay.AddPoint(Target.Display.GlobalPosition + Target.WireOffset.Rotated(Target.Display.GlobalRotation));
             }
+            WireDisplay.AddPoint((WireDisplay.Points[0] + WireDisplay.Points[1]) / 2 + Vector2.Down, 1);
         }
         base._Process(delta);
     }

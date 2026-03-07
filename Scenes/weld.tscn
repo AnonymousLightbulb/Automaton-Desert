@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b1erruvq1sqva"]
 
 [ext_resource type="Script" uid="uid://rqvumecbxllw" path="res://Scripts/Weld.cs" id="1_hivti"]
-[ext_resource type="Texture2D" uid="uid://dnkeolbuegeoq" path="res://Textures/Weld.png" id="2_eqej5"]
+[ext_resource type="Texture2D" uid="uid://dnkeolbuegeoq" path="res://Textures/Parts/Weld.png" id="2_eqej5"]
 
 [node name="Weld" type="PinJoint2D" unique_id=1088574459]
 process_priority = -2

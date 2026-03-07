@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://55x8kufvmg0o"]
 
 [ext_resource type="Script" uid="uid://dfntc6cv6iyi7" path="res://Scripts/FallingBlock.cs" id="1_374re"]
-[ext_resource type="Texture2D" uid="uid://o0x404cklexm" path="res://Textures/Sand.png" id="2_vo5tb"]
+[ext_resource type="Texture2D" uid="uid://o0x404cklexm" path="res://Textures/Terrain/Sand.png" id="2_vo5tb"]
 [ext_resource type="Script" uid="uid://d1kyskdossdsi" path="res://Scripts/Gyroscope.cs" id="3_vo5tb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_374re"]
@@ -10,11 +10,15 @@ radius = 3.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo5tb"]
 size = Vector2(0.001, 1)
 
-[node name="FallingBlock" type="RigidBody2D" unique_id=1901248326 node_paths=PackedStringArray("Image", "DamageImage", "Detector")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7ffj"]
+size = Vector2(6, 6)
+
+[node name="FallingBlock" type="RigidBody2D" unique_id=1901248326 node_paths=PackedStringArray("Image", "DamageImage", "Detector", "Safety")]
 script = ExtResource("1_374re")
 Image = NodePath("Sprite2D")
 DamageImage = NodePath("Damage")
 Detector = NodePath("Node2D/Area2D")
+Safety = NodePath("Node2D/Area2D2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1216270054]
 texture = ExtResource("2_vo5tb")
@@ -32,3 +36,10 @@ script = ExtResource("3_vo5tb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D" unique_id=952532804]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_vo5tb")
+
+[node name="Area2D2" type="Area2D" parent="Node2D" unique_id=1674202111]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D2" unique_id=455470587]
+shape = SubResource("RectangleShape2D_k7ffj")

@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" format=3 uid="uid://bnjftp2rjarw0"]
 
-[ext_resource type="Texture2D" uid="uid://o0x404cklexm" path="res://Textures/Sand.png" id="1_nwmol"]
-[ext_resource type="Texture2D" uid="uid://d3b0fwntge5sw" path="res://Textures/Steel.png" id="2_oyn6s"]
-[ext_resource type="Texture2D" uid="uid://crynnuc36rwnt" path="res://Textures/Sandstone.png" id="3_oyn6s"]
+[ext_resource type="Texture2D" uid="uid://o0x404cklexm" path="res://Textures/Terrain/Sand.png" id="1_nwmol"]
+[ext_resource type="Texture2D" uid="uid://d3b0fwntge5sw" path="res://Textures/Parts/Steel.png" id="2_oyn6s"]
+[ext_resource type="Texture2D" uid="uid://crynnuc36rwnt" path="res://Textures/Terrain/Sandstone.png" id="3_oyn6s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nivqn"]
 resource_name = "Red Sand"

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b2uo3c5njxob6"]
 
 [ext_resource type="Script" uid="uid://bcij3fh6k0uri" path="res://Scripts/PowerLine.cs" id="1_3gyfy"]
-[ext_resource type="Texture2D" uid="uid://4xfiitxi4utx" path="res://Textures/PowerLine.png" id="1_6dpiw"]
+[ext_resource type="Texture2D" uid="uid://4xfiitxi4utx" path="res://Textures/Parts/PowerLine.png" id="1_6dpiw"]
 
 [node name="PowerLine" type="Line2D" unique_id=563645352]
 process_priority = -1

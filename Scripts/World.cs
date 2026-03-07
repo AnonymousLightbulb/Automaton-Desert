@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public partial class World : Node2D
 {
+    [Export] public Godot.Collections.Array<Texture2D> BlockTextures = [];
     public static World TheWorld;
     [Export] public Node Entities;
     [Export] public PackedScene CoreTemplate;
@@ -77,6 +78,9 @@ public partial class World : Node2D
                 Map.EraseCell(Target);
                 TileDamages.Remove(Target);
                 UpdateTile(Target + Vector2I.Up);
+                UpdateTile(Target + Vector2I.Down);
+                UpdateTile(Target + Vector2I.Left);
+                UpdateTile(Target + Vector2I.Right);
             }
         }
     }
@@ -99,7 +103,7 @@ public partial class World : Node2D
                     DamagedTiles.EraseCell(Target);
                     Map.EraseCell(Target);
 
-                    Entities.AddChild(asdf);
+                    Map.GetParent().AddChild(asdf);
                     UpdateTile(Target + Vector2I.Up);
                 }
             }

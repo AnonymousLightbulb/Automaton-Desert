@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bww84whfycwdi"]
 
-[ext_resource type="Texture2D" uid="uid://bxl186qaqqmbl" path="res://Textures/ItemLine.png" id="1_ao6g4"]
+[ext_resource type="Texture2D" uid="uid://bxl186qaqqmbl" path="res://Textures/Parts/ItemLine.png" id="1_ao6g4"]
 [ext_resource type="Script" uid="uid://phu0pl7qdpug" path="res://Scripts/ItemPipe.cs" id="2_rnt08"]
 
 [node name="ItemPipe" type="Line2D" unique_id=563504744]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxwu35gkfljq8"]
 
 [ext_resource type="Script" uid="uid://jnux0rwei6b5" path="res://Scripts/StructuralPart.cs" id="1_y7iat"]
-[ext_resource type="Texture2D" uid="uid://7un33rikymij" path="res://Textures/Wheel.png" id="2_u5up5"]
+[ext_resource type="Texture2D" uid="uid://7un33rikymij" path="res://Textures/Parts/Wheel.png" id="2_u5up5"]
 
 [node name="Wheel" type="RigidBody2D" unique_id=827548785]
 collision_layer = 2

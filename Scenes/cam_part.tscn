@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmmxijqr7k06d"]
 
 [ext_resource type="Script" uid="uid://6ko7sgirrhkh" path="res://Scripts/CamPart.cs" id="2_u7sw6"]
-[ext_resource type="Texture2D" uid="uid://b5mwsvgk2bfkq" path="res://Textures/Cam.png" id="3_u7sw6"]
+[ext_resource type="Texture2D" uid="uid://b5mwsvgk2bfkq" path="res://Textures/Parts/Cam.png" id="3_u7sw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8c8u"]
 size = Vector2(384, 216)

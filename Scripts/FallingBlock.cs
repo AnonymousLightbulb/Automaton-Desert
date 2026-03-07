@@ -8,10 +8,12 @@ public partial class FallingBlock : RigidBody2D
     [Export] public Sprite2D Image;
     [Export] public Sprite2D DamageImage;
     [Export] public Area2D Detector;
+    [Export] public Area2D Safety;
     [Export] public short FailCount = 0;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        Image.Texture = World.TheWorld.BlockTextures[ID];
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,7 +46,7 @@ public partial class FallingBlock : RigidBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Detector.GetOverlappingBodies().Contains(World.TheWorld.Map))
+        if (Safety.GetOverlappingBodies().Count < 1 && Detector.GetOverlappingBodies().Contains(World.TheWorld.Map))
         {
             Vector2I Target = World.TheWorld.Map.LocalToMap(World.TheWorld.Map.ToLocal(GlobalPosition));
             if (!World.TheWorld.Map.GetUsedCells().Contains(Target))

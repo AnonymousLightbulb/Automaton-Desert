@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ck2hthxsbnjte"]
 
 [ext_resource type="Script" uid="uid://jnux0rwei6b5" path="res://Scripts/StructuralPart.cs" id="1_ufq66"]
-[ext_resource type="Texture2D" uid="uid://d3b0fwntge5sw" path="res://Textures/Steel.png" id="2_ufq66"]
+[ext_resource type="Texture2D" uid="uid://d3b0fwntge5sw" path="res://Textures/Parts/Steel.png" id="2_ufq66"]
 
 [node name="SteelStructure" type="RigidBody2D" unique_id=76858489]
 collision_layer = 2
@@ -11,7 +11,7 @@ input_pickable = true
 script = ExtResource("1_ufq66")
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")
-Size = Vector2i(6, 3)
+Size = Vector2i(3, 3)
 Density = 0.4
 Display = NodePath("../Sprite2D")
 MaxMaxElectricity = 0.0
@@ -27,4 +27,4 @@ Output = 0.0
 z_index = -1
 texture = ExtResource("2_ufq66")
 region_enabled = true
-region_rect = Rect2(0, 0, 6, 3)
+region_rect = Rect2(0, 0, 3, 3)

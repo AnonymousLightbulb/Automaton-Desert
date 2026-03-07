@@ -4,6 +4,7 @@ public partial class Weld : Part
 {
     [Export] public PinJoint2D Joiner;
     [Export] public RigidBody2D Target;
+    [Export] public bool Persistant;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -22,6 +23,10 @@ public partial class Weld : Part
         {
             Joiner.NodeA = Joiner.GetParent().GetPath();
             Joiner.NodeB = Target.GetPath();
+        }
+        if (Persistant == false && IsInstanceValid(Target) == false)
+        {
+            GetParent().QueueFree();
         }
         base._Process(delta);
 

@@ -6,8 +6,8 @@ public partial class ItemPipe : Wire
     [Export] public int OutputSlot;
     [Export] public bool Open;
     [Export] public bool SendAll;
-    [Export] public float MaxTransferRate = 25;
-    [Export] public float TransferRate = 25;
+    [Export] public float MaxTransferRate = 250;
+    [Export] public float TransferRate = 250;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -62,6 +62,15 @@ public partial class ItemPipe : Wire
                                 Transfers.Add(new Vector2I(i1, i));
                             }
                         }
+                        else if (Reverse == false && item2.ItemType == "")
+                        {
+                            Transfers.Add(new Vector2I(i, i1));
+                        }
+                        else if (Reverse == true && item.ItemType == "")
+                        {
+                            Transfers.Add(new Vector2I(i1, i));
+                        }
+
                     }
                 }
                 foreach (Vector2I item in Transfers)
@@ -75,9 +84,10 @@ public partial class ItemPipe : Wire
     // TakeIn is the inventory that goes into the pipe and SendOut is the inventory that the pipe empties into
     public void TransferItem(float delta, Inventory TakeIn, Inventory SendOut, float TransferVolume)
     {
-        if (SendOut.IsItemTypeDynamic == true && Mathf.IsEqualApprox(SendOut.ItemCountF, 0) && SendOut.ItemCountI == 0)
+        if (SendOut.IsItemTypeDynamic == true && SendOut.ItemCountF < 0.1f && SendOut.ItemCountI == 0)
         {
             SendOut.ItemType = TakeIn.ItemType;
+            GD.Print(TakeIn.ItemType);
         }
         if (TakeIn.ItemType == SendOut.ItemType)
         {

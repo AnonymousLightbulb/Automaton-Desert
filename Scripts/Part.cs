@@ -313,12 +313,16 @@ public partial class Part : Node
         MaxElectricity = Mathf.Clamp(MaxElectricity, 0, MaxMaxElectricity);
         Electricity = Mathf.Clamp(Electricity, 0, MaxElectricity);
         Intake = Mathf.Clamp(Intake, 0, MaxIntake);
-        Output = Mathf.Clamp(Intake, 0, MaxOutput);
+        Output = Mathf.Clamp(Output, 0, MaxOutput);
         Burn = Mathf.Clamp(Burn, 0, MaxBurn);
         base._PhysicsProcess(delta);
         if (Mind != null)
         {
             RunCommands(Mind.CommandSet, this);
+        }
+        if (Durability <= 0)
+        {
+            QueueFree();
         }
     }
     public void FindUser(Node StartPoint)
@@ -776,6 +780,17 @@ public partial class Part : Node
                                                                 break;
                                                         }
 
+                                                    }
+                                                    else if (this is Cannon)
+                                                    {
+                                                        switch ((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Operation)
+                                                        {
+                                                            case BrainWord.Flag.Math.Operation.Set:
+                                                                (this as Cannon).Firing = FindBool((Brain[CurrentBehaviour].Task[CurrentBrainSentence][WordId] as BrainWord.Action.PartSettings).Input);
+                                                                break;
+                                                            default:
+                                                                break;
+                                                        }
                                                     }
                                                     break;
                                                 default:

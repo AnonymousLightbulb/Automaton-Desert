@@ -30,6 +30,10 @@ window/vsync/vsync_mode=0
 
 project/assembly_name="Automaton Desert"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/quarkphysics/plugin.cfg")
+
 [gui]
 
 theme/default_font_antialiasing=0
@@ -55,7 +59,7 @@ Pause={
 
 [physics]
 
-common/physics_ticks_per_second=120
+common/physics_ticks_per_second=240
 2d/physics_engine="Rapier2D"
 rapier/joint/damping_ratio=10.0
 rapier/solver/preset=2

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dakm74oulviy3"]
 
 [ext_resource type="Script" uid="uid://c7pclmdqsb115" path="res://Scripts/LaserGun.cs" id="1_mou6w"]
-[ext_resource type="Texture2D" uid="uid://cx5f2d8pnf87l" path="res://Textures/Laser.png" id="2_3pc01"]
+[ext_resource type="Texture2D" uid="uid://cx5f2d8pnf87l" path="res://Textures/Parts/Laser.png" id="2_3pc01"]
 
 [node name="LaserGun" type="RigidBody2D" unique_id=76858489]
 collision_layer = 2
@@ -13,17 +13,16 @@ LaserBeam = NodePath("../RayCast2D")
 LineDisplay = NodePath("../Line2D")
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")
-Size = Vector2i(5, 5)
+Size = Vector2i(7, 7)
 Display = NodePath("../Sprite2D")
 WireOffset = Vector2(-1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=297714435]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1753471987]
-z_index = -1
 texture = ExtResource("2_3pc01")
 region_enabled = true
-region_rect = Rect2(0, 0, 5, 5)
+region_rect = Rect2(0, 0, 7, 7)
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1205817848]
 visible = false
@@ -33,7 +32,7 @@ collision_mask = 3
 
 [node name="Line2D" type="Line2D" parent="." unique_id=931210317]
 top_level = true
-z_index = -2
+z_index = -1
 points = PackedVector2Array(0, 0, 0, 0)
 closed = true
 width = 2.0

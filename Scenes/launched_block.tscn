@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cu8qqphb2w8ad"]
+
+[ext_resource type="Script" uid="uid://dfntc6cv6iyi7" path="res://Scripts/FallingBlock.cs" id="1_4nsga"]
+[ext_resource type="Texture2D" uid="uid://o0x404cklexm" path="res://Textures/Terrain/Sand.png" id="2_ebapc"]
+[ext_resource type="Script" uid="uid://d1kyskdossdsi" path="res://Scripts/Gyroscope.cs" id="3_vrfbs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_374re"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo5tb"]
+size = Vector2(0.001, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrfbs"]
+size = Vector2(1, 0.001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tf3d"]
+size = Vector2(6, 6)
+
+[node name="LaunchedBlock" type="RigidBody2D" unique_id=1901248326 node_paths=PackedStringArray("Image", "DamageImage", "Detector", "Safety")]
+collision_layer = 0
+script = ExtResource("1_4nsga")
+Image = NodePath("Sprite2D")
+DamageImage = NodePath("Damage")
+Detector = NodePath("Node2D/Area2D")
+Safety = NodePath("Node2D/Area2D2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1216270054]
+texture = ExtResource("2_ebapc")
+
+[node name="Damage" type="Sprite2D" parent="." unique_id=601565962]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1742834221]
+shape = SubResource("CircleShape2D_374re")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=82908726]
+script = ExtResource("3_vrfbs")
+
+[node name="Area2D" type="Area2D" parent="Node2D" unique_id=1005779435]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D" unique_id=952532804]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_vo5tb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Area2D" unique_id=303581162]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_vo5tb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/Area2D" unique_id=1136510912]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_vrfbs")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/Area2D" unique_id=331922136]
+position = Vector2(-3.5, 0)
+shape = SubResource("RectangleShape2D_vrfbs")
+
+[node name="Area2D2" type="Area2D" parent="Node2D" unique_id=1922666091]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D2" unique_id=1265872556]
+shape = SubResource("RectangleShape2D_4tf3d")

@@ -8,6 +8,7 @@ public partial class Inventory : Node
       {"ethanol", true},
       {"metal", false},
       {"sand", false},
+      {"sandstone", false},
     };
     public bool IsItemFloat()
     {
@@ -33,10 +34,18 @@ public partial class Inventory : Node
         if (IsItemFloat() == true)
         {
             ItemCountI = 0;
+            if (Mathf.IsEqualApprox(ItemCountF, 0))
+            {
+                ItemType = "";
+            }
         }
         else
         {
             ItemCountF = 0;
+            if (ItemCountI < 1)
+            {
+                ItemType = "";
+            }
         }
         base._PhysicsProcess(delta);
     }
