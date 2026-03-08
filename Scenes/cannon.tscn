@@ -13,11 +13,6 @@ script = ExtResource("1_qlvt6")
 LaunchedBlock = ExtResource("2_ognwi")
 TargetItem = "metal"
 DynamicItems = true
-ItemsI = Dictionary[String, int]({
-"metal": 288,
-"sand": 288,
-"sandstone": 288
-})
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")
 Size = Vector2i(7, 7)

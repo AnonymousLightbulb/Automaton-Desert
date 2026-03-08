@@ -7,7 +7,7 @@ public partial class ItemPipe : Wire
     [Export] public bool Open;
     [Export] public float MaxTransferRate = 50;
     [Export] public float TransferRate = 50;
-    [Export] public Godot.Collections.Dictionary<string, float> TransferItemITime;
+    [Export] public Godot.Collections.Dictionary<string, float> TransferItemITime = [];
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -28,6 +28,8 @@ public partial class ItemPipe : Wire
         if (Target is Storage && par is Storage)
         {
             Godot.Collections.Array<string> TransfersF = [];
+            Godot.Collections.Array<string> TransfersI = [];
+
             if (Reverse == false)
             {
                 foreach (var item in (par as Storage).ItemsF)
@@ -37,10 +39,38 @@ public partial class ItemPipe : Wire
                         TransfersF.Add(item.Key);
                     }
                 }
+                foreach (var item in (par as Storage).ItemsI)
+                {
+                    if ((Target as Storage).DynamicItems == true || (Target as Storage).ItemsI.ContainsKey(item.Key))
+                    {
+                        TransfersI.Add(item.Key);
+                    }
+                }
+
                 foreach (var item in TransfersF)
                 {
                     TransferItemF((float)delta, item, WireDisplay.GetParent().GetChild(0) as Storage, Target as Storage);
                 }
+                foreach (var item in TransfersI)
+                {
+                    if (TransferItemITime.ContainsKey(item))
+                    {
+                        TransferItemITime[item] += TransferRate * (float)delta;
+                    }
+                    else
+                    {
+                        TransferItemITime.Add(item, TransferRate * (float)delta);
+                    }
+                }
+                foreach (var item in TransferItemITime)
+                {
+                    if (item.Value > 0)
+                    {
+                        TransferItemI(Mathf.FloorToInt(item.Value), item.Key, WireDisplay.GetParent().GetChild(0) as Storage, Target as Storage);
+                        TransferItemITime[item.Key] -= Mathf.FloorToInt(item.Value);
+                    }
+                }
+
             }
             else
             {
@@ -51,11 +81,37 @@ public partial class ItemPipe : Wire
                         TransfersF.Add(item.Key);
                     }
                 }
+                foreach (var item in (Target as Storage).ItemsI)
+                {
+                    if ((par as Storage).DynamicItems == true || (par as Storage).ItemsI.ContainsKey(item.Key))
+                    {
+                        TransfersI.Add(item.Key);
+                    }
+                }
+
                 foreach (var item in TransfersF)
                 {
                     TransferItemF((float)delta, item, Target as Storage, WireDisplay.GetParent().GetChild(0) as Storage);
                 }
-
+                foreach (var item in TransfersI)
+                {
+                    if (TransferItemITime.ContainsKey(item))
+                    {
+                        TransferItemITime[item] += TransferRate * (float)delta;
+                    }
+                    else
+                    {
+                        TransferItemITime.Add(item, TransferRate * (float)delta);
+                    }
+                }
+                foreach (var item in TransferItemITime)
+                {
+                    if (item.Value > 0)
+                    {
+                        TransferItemI(Mathf.FloorToInt(item.Value), item.Key, Target as Storage, WireDisplay.GetParent().GetChild(0) as Storage);
+                        TransferItemITime[item.Key] -= Mathf.FloorToInt(item.Value);
+                    }
+                }
             }
         }
         base._PhysicsProcess(delta);
@@ -75,8 +131,19 @@ public partial class ItemPipe : Wire
         {
             To.ItemsF.Add(ToSend, TransferAmmount);
         }
-        GD.Print(ToSend);
-        GD.Print(TransferAmmount);
-
+    }
+    public void TransferItemI(int Amount, string ToSend, Storage From, Storage To)
+    {
+        int TransferAmmount = Mathf.Clamp(Amount, 0, Mathf.RoundToInt(Mathf.Clamp(From.ItemsI[ToSend], 0, Mathf.Inf)));
+        TransferAmmount = Mathf.Clamp(TransferAmmount, 0, Mathf.FloorToInt(Mathf.Clamp(To.MaxFullness - To.Fullness(), 0, Mathf.Inf)));
+        From.ItemsI[ToSend] -= TransferAmmount;
+        if (To.ItemsI.ContainsKey(ToSend))
+        {
+            To.ItemsI[ToSend] += TransferAmmount;
+        }
+        else
+        {
+            To.ItemsI.Add(ToSend, TransferAmmount);
+        }
     }
 }

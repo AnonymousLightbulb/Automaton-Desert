@@ -548,7 +548,6 @@ MaxDurability = 100.0
 [node name="ItemPipePart" parent="Entities/Player/Parts/Storage/ItemPipe" index="0" unique_id=793178024 node_paths=PackedStringArray("Target")]
 InputSlot = 1
 Open = true
-SendAll = true
 Target = NodePath("../../../GasEngine/GasEnginePart")
 MaxDurability = 100.0
 
@@ -556,6 +555,9 @@ MaxDurability = 100.0
 position = Vector2(9, -17)
 
 [node name="StoragePart" parent="Entities/Player/Parts/Storage2" index="0" unique_id=748960007]
+ItemsI = Dictionary[String, int]({
+"sand": 1000
+})
 MaxDurability = 100.0
 
 [node name="ItemPipe" parent="Entities/Player/Parts/Storage2" unique_id=563504744 instance=ExtResource("15_kn0ld")]
@@ -563,7 +565,6 @@ MaxDurability = 100.0
 [node name="ItemPipePart" parent="Entities/Player/Parts/Storage2/ItemPipe" index="0" unique_id=793178024 node_paths=PackedStringArray("Target")]
 InputSlot = 1
 Open = true
-SendAll = true
 Target = NodePath("../../../Cannon/CannonPart")
 MaxDurability = 100.0
 
