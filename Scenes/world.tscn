@@ -537,22 +537,13 @@ MaxDurability = 100.0
 position = Vector2(-9, -17)
 
 [node name="StoragePart" parent="Entities/Player/Parts/Storage" index="0" unique_id=748960007]
+ItemsF = Dictionary[String, float]({
+"ethanol": 500.0,
+"gas": 500.0
+})
 MaxDurability = 100.0
 
-[node name="Item" parent="Entities/Player/Parts/Storage/StoragePart" index="0" unique_id=350543090]
-ItemType = "metal"
-ItemCountI = 100
-
-[node name="Item2" parent="Entities/Player/Parts/Storage/StoragePart" index="1" unique_id=2137134877]
-ItemType = "gas"
-ItemCountF = 200.0
-
-[node name="Item3" parent="Entities/Player/Parts/Storage/StoragePart" index="2" unique_id=528198692]
-ItemType = "ethanol"
-ItemCountF = 200.0
-
 [node name="ItemPipe" parent="Entities/Player/Parts/Storage" unique_id=769196315 instance=ExtResource("15_kn0ld")]
-process_mode = 4
 
 [node name="ItemPipePart" parent="Entities/Player/Parts/Storage/ItemPipe" index="0" unique_id=793178024 node_paths=PackedStringArray("Target")]
 InputSlot = 1
@@ -566,10 +557,6 @@ position = Vector2(9, -17)
 
 [node name="StoragePart" parent="Entities/Player/Parts/Storage2" index="0" unique_id=748960007]
 MaxDurability = 100.0
-
-[node name="Item" parent="Entities/Player/Parts/Storage2/StoragePart" index="0" unique_id=350543090]
-ItemType = "gas"
-ItemCountI = 40
 
 [node name="ItemPipe" parent="Entities/Player/Parts/Storage2" unique_id=563504744 instance=ExtResource("15_kn0ld")]
 

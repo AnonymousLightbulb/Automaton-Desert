@@ -5,9 +5,9 @@ public partial class ItemPipe : Wire
     [Export] public int InputSlot;
     [Export] public int OutputSlot;
     [Export] public bool Open;
-    [Export] public bool SendAll;
-    [Export] public float MaxTransferRate = 250;
-    [Export] public float TransferRate = 250;
+    [Export] public float MaxTransferRate = 50;
+    [Export] public float TransferRate = 50;
+    [Export] public Godot.Collections.Dictionary<string, float> TransferItemITime;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -22,90 +22,61 @@ public partial class ItemPipe : Wire
     }
     public override void _PhysicsProcess(double delta)
     {
+        //TransferItemITime += (float)delta;
         TransferRate = Mathf.Clamp(TransferRate, 0, MaxTransferRate);
         Node par = WireDisplay.GetParent().GetChild(0);
         if (Target is Storage && par is Storage)
         {
-            if (SendAll == false)
+            Godot.Collections.Array<string> TransfersF = [];
+            if (Reverse == false)
             {
-                InputSlot = Mathf.Clamp(InputSlot, 0, (par as Storage).Items.Count - 1);
-                OutputSlot = Mathf.Clamp(OutputSlot, 0, (Target as Storage).Items.Count - 1);
-                if (Open == true)
+                foreach (var item in (par as Storage).ItemsF)
                 {
-                    if (Reverse == false)
+                    if ((Target as Storage).DynamicItems == true || (Target as Storage).ItemsF.ContainsKey(item.Key))
                     {
-                        TransferItem((float)delta, (par as Storage).Items[InputSlot], (Target as Storage).Items[OutputSlot], TransferRate);
+                        TransfersF.Add(item.Key);
                     }
-                    else
-                    {
-                        TransferItem((float)delta, (Target as Storage).Items[OutputSlot], (par as Storage).Items[InputSlot], TransferRate);
-                    }
+                }
+                foreach (var item in TransfersF)
+                {
+                    TransferItemF((float)delta, item, WireDisplay.GetParent().GetChild(0) as Storage, Target as Storage);
                 }
             }
             else
             {
-                Godot.Collections.Array<Vector2I> Transfers = [];
-                for (int i = 0; i < (par as Storage).Items.Count; i++)
+                foreach (var item in (Target as Storage).ItemsF)
                 {
-                    Inventory item = (par as Storage).Items[i];
-                    for (int i1 = 0; i1 < (Target as Storage).Items.Count; i1++)
+                    if ((par as Storage).DynamicItems == true || (par as Storage).ItemsF.ContainsKey(item.Key))
                     {
-                        Inventory item2 = (Target as Storage).Items[i1];
-                        if (item.ItemType == item2.ItemType)
-                        {
-                            if (Reverse == false)
-                            {
-                                Transfers.Add(new Vector2I(i, i1));
-                            }
-                            else
-                            {
-                                Transfers.Add(new Vector2I(i1, i));
-                            }
-                        }
-                        else if (Reverse == false && item2.ItemType == "")
-                        {
-                            Transfers.Add(new Vector2I(i, i1));
-                        }
-                        else if (Reverse == true && item.ItemType == "")
-                        {
-                            Transfers.Add(new Vector2I(i1, i));
-                        }
-
+                        TransfersF.Add(item.Key);
                     }
                 }
-                foreach (Vector2I item in Transfers)
+                foreach (var item in TransfersF)
                 {
-                    TransferItem((float)delta, (par as Storage).Items[item.X], (Target as Storage).Items[item.Y], TransferRate);
+                    TransferItemF((float)delta, item, Target as Storage, WireDisplay.GetParent().GetChild(0) as Storage);
                 }
+
             }
         }
         base._PhysicsProcess(delta);
     }
     // TakeIn is the inventory that goes into the pipe and SendOut is the inventory that the pipe empties into
-    public void TransferItem(float delta, Inventory TakeIn, Inventory SendOut, float TransferVolume)
+    public void TransferItemF(float delta, string ToSend, Storage From, Storage To)
     {
-        if (SendOut.IsItemTypeDynamic == true && SendOut.ItemCountF < 0.1f && SendOut.ItemCountI == 0)
+
+        float TransferAmmount = Mathf.Clamp(TransferRate * delta, 0, Mathf.Clamp(From.ItemsF[ToSend], 0, Mathf.Inf));
+        TransferAmmount = Mathf.Clamp(TransferAmmount, 0, Mathf.Clamp(To.MaxFullness - To.Fullness(), 0, Mathf.Inf));
+        From.ItemsF[ToSend] -= TransferAmmount;
+        if (To.ItemsF.ContainsKey(ToSend))
         {
-            SendOut.ItemType = TakeIn.ItemType;
-            GD.Print(TakeIn.ItemType);
+            To.ItemsF[ToSend] += TransferAmmount;
         }
-        if (TakeIn.ItemType == SendOut.ItemType)
+        else
         {
-            if (Inventory.ItemTypeDictionary.ContainsKey(TakeIn.ItemType))
-            {
-                if (Inventory.ItemTypeDictionary[TakeIn.ItemType] == true)
-                {
-                    float TransferAmmount = Mathf.Clamp(TakeIn.ItemCountF, 0, Mathf.Clamp((Target as Storage).MaxFullness - (Target as Storage).Fullness(), 0, TransferVolume * delta));
-                    TakeIn.ItemCountF -= TransferAmmount;
-                    SendOut.ItemCountF += TransferAmmount;
-                }
-                else
-                {
-                    int TransferAmmount = Mathf.Clamp(TakeIn.ItemCountI, 0, Mathf.Clamp(Mathf.FloorToInt((Target as Storage).MaxFullness - (Target as Storage).Fullness()), 0, Mathf.FloorToInt(TransferVolume * delta)));
-                    TakeIn.ItemCountI -= TransferAmmount;
-                    SendOut.ItemCountI += TransferAmmount;
-                }
-            }
+            To.ItemsF.Add(ToSend, TransferAmmount);
         }
+        GD.Print(ToSend);
+        GD.Print(TransferAmmount);
+
     }
 }

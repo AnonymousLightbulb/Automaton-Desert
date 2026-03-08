@@ -7,11 +7,11 @@ public partial class GasEngine : Storage
     // Called when the node enters the scene tree for the first time.
     public override void _PhysicsProcess(double delta)
     {
-        float TransferAmmount = Mathf.Clamp(Items[0].ItemCountF, 0, GasBurn * (float)delta);
-        Items[0].ItemCountF -= TransferAmmount;
+        float TransferAmmount = Mathf.Clamp(ItemsF["gas"], 0, GasBurn * (float)delta);
+        ItemsF["gas"] -= TransferAmmount;
         Electricity += TransferAmmount * 1000;
-        TransferAmmount = Mathf.Clamp(Items[1].ItemCountF, 0, Mathf.Clamp(GasBurn * (float)delta - TransferAmmount, 0, GasBurn * (float)delta));
-        Items[1].ItemCountF -= TransferAmmount;
+        TransferAmmount = Mathf.Clamp(ItemsF["ethanol"], 0, Mathf.Clamp(GasBurn * (float)delta - TransferAmmount, 0, GasBurn * (float)delta));
+        ItemsF["ethanol"] -= TransferAmmount;
         Electricity += TransferAmmount * 100;
         base._PhysicsProcess(delta);
     }

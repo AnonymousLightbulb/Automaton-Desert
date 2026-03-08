@@ -2,15 +2,17 @@
 
 [ext_resource type="Script" uid="uid://opfs506hgum0" path="res://Scripts/GasEngine.cs" id="1_dtjgn"]
 [ext_resource type="Texture2D" uid="uid://ds3isonvxq06n" path="res://Textures/Parts/GasEngine.png" id="2_dtjgn"]
-[ext_resource type="Script" uid="uid://cxxg54epcptyx" path="res://Scripts/Inventory.cs" id="3_wdh8i"]
 
 [node name="GasEngine" type="RigidBody2D" unique_id=1559148504]
 collision_layer = 2
 
-[node name="GasEnginePart" type="Node" parent="." unique_id=1046212610 node_paths=PackedStringArray("Items", "Body", "BodyShape", "Display")]
+[node name="GasEnginePart" type="Node" parent="." unique_id=1046212610 node_paths=PackedStringArray("Body", "BodyShape", "Display")]
 script = ExtResource("1_dtjgn")
 MaxFullness = 100.0
-Items = [NodePath("../Gas"), NodePath("../Ethanol")]
+ItemsF = Dictionary[String, float]({
+"ethanol": 0.0,
+"gas": 0.0
+})
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")
 Size = Vector2i(11, 7)
@@ -28,11 +30,3 @@ MaxHeat = 100.0
 texture = ExtResource("2_dtjgn")
 region_enabled = true
 region_rect = Rect2(0, 0, 11, 7)
-
-[node name="Gas" type="Node" parent="." unique_id=1283976490]
-script = ExtResource("3_wdh8i")
-ItemType = "gas"
-
-[node name="Ethanol" type="Node" parent="." unique_id=19808875]
-script = ExtResource("3_wdh8i")
-ItemType = "ethanol"

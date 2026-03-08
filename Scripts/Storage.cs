@@ -3,22 +3,21 @@ using Godot;
 public partial class Storage : StructuralPart
 {
     [Export] public float MaxFullness = 1000;
-    [Export] public Godot.Collections.Array<Inventory> Items = [];
+    [Export] public bool DynamicItems = false;
+    [Export] public Godot.Collections.Dictionary<string, int> ItemsI = [];
+    [Export] public Godot.Collections.Dictionary<string, float> ItemsF = [];
+
 
     public float Fullness()
     {
         float Filledness = 0;
-        foreach (Inventory item in Items)
+        foreach (var item in ItemsI)
         {
-            if (item.IsItemFloat() == true)
-            {
-                Filledness += item.ItemCountF;
-            }
-            else
-            {
-                Filledness += item.ItemCountI;
-            }
-
+            Filledness += item.Value;
+        }
+        foreach (var item in ItemsF)
+        {
+            Filledness += item.Value;
         }
         return Filledness;
     }

@@ -3,25 +3,26 @@
 [ext_resource type="Script" uid="uid://c4npfs061irbg" path="res://Scripts/Cannon.cs" id="1_qlvt6"]
 [ext_resource type="Texture2D" uid="uid://c1pe6yjcahvln" path="res://Textures/Parts/Cannon.png" id="2_3uv2y"]
 [ext_resource type="PackedScene" uid="uid://cu8qqphb2w8ad" path="res://Scenes/launched_block.tscn" id="2_ognwi"]
-[ext_resource type="Script" uid="uid://cxxg54epcptyx" path="res://Scripts/Inventory.cs" id="4_ognwi"]
 
 [node name="Cannon" type="RigidBody2D" unique_id=76858489]
 collision_layer = 2
 input_pickable = true
 
-[node name="CannonPart" type="Node" parent="." unique_id=202849742 node_paths=PackedStringArray("Items", "Body", "BodyShape", "Display")]
+[node name="CannonPart" type="Node" parent="." unique_id=202849742 node_paths=PackedStringArray("Body", "BodyShape", "Display")]
 script = ExtResource("1_qlvt6")
 LaunchedBlock = ExtResource("2_ognwi")
-Items = [NodePath("Item")]
+TargetItem = "metal"
+DynamicItems = true
+ItemsI = Dictionary[String, int]({
+"metal": 288,
+"sand": 288,
+"sandstone": 288
+})
 Body = NodePath("..")
 BodyShape = NodePath("../CollisionShape2D")
 Size = Vector2i(7, 7)
 Density = 0.3
 Display = NodePath("../Sprite2D")
-
-[node name="Item" type="Node" parent="CannonPart" unique_id=45011295]
-script = ExtResource("4_ognwi")
-IsItemTypeDynamic = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=297714435]
 

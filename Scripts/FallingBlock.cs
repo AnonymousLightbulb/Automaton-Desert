@@ -19,6 +19,7 @@ public partial class FallingBlock : RigidBody2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        Image.Texture = World.TheWorld.BlockTextures[ID];
         if (Damaged == true)
         {
             if (Damage < World.TileDurabilities[ID] / 4)
